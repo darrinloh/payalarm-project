@@ -71,7 +71,7 @@ ddsmoothmenu.init({
 				<button type="submit">Login</button>
 				
 			</form>
-			<p><small>New? <a ref="signup.html">Sign up now!</a></p>
+			<p><small>New? <a ref="signup">Sign up now!</a></p>
 		</div>
 		<div class="col one_third one_third_height fp_services">
 			<img src="images/payment.jpg" style="margin-bottom:20px"/>
