@@ -1,3 +1,8 @@
+<?php
+	session_start();
+
+?>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head> 
@@ -68,15 +73,22 @@ ddsmoothmenu.init({
             <img src="images/login.png" alt="login" />
             <h2>Login</a></h2>
             <p>Enter your Username and Password</p>
-			<form action="signup.php" method="POST">
+			<form action="login1.php" method="POST">
 				Username:<input type="text" name="uid" placeholder="Username">
 				<br><br>
 				Password:<input type="password" name="pwd" placeholder="Password"><br>
 				<button type="submit">Login</button>
-				
 			</form>
 			<p><small>New? <a style="cursor:pointer" href="signup.php ">Sign up now!</a></small></p>
 		</div>
+		<?php
+			if(isset($_SESSION['id'])){
+				;
+			}
+			else{
+				echo "Your username or password is incorrect.";
+			}
+		?>
 		<div class="col one_third one_third_height fp_services">
 			<img src="images/payment.jpg" style="margin-bottom:20px"/>
 			<br>
