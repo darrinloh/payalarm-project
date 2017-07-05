@@ -50,7 +50,7 @@ ddsmoothmenu.init({
 
 <div id="tooplate_wrapper">
 	<div id="tooplate_header">
-    	<div id="site_title"><h1><a href="#">PayAlarm</a></h1></div>
+    	<div id="site_title"><h1><a href="index.php">PayAlarm</a></h1></div>
         <div id="tooplate_menu" class="ddsmoothmenu">
             
             <br style="clear: left" />
@@ -62,28 +62,21 @@ ddsmoothmenu.init({
     	       
         <div class="col center fp_services">
             <img src="images/login.png" alt="login" />
-            <h2>Sign Up</a></h2>
-            <p>Enter your Username and Password</p>
+            <h2><b>Sign Up!</b></a></h2>
+            <p>Enter your New Username and Password</p>
 			<form action="signup1.php" method="POST">
 				Username:        <input type="text" name="uid" placeholder="Username">
 				<br><br>
-				Password:        <input type="password" name="pwd" placeholder="Password"><br>
-				Confirm Password:<input type="text" name="password" placehold="Confirm Password"><br>
+				Password:        <input type="password" name="pwd" placeholder="Password">
+				<br><br>
+				Confirm Password:<input type="password" name="password" placeholder="Confirm Password">
+				<br><br>
 				<input type="submit" value="Sign Up">
 			</form>
 			
 			
 		</div>
-		<div class="col one_third one_third_height fp_services">
-			<img src="images/payment.jpg" style="margin-bottom:20px"/>
-			<br>
-			<br>
-			<br>
-			<h2 style="text-align:left ; width:220px ;font-size:30px; line-height:25px"> 
-			To use our services, login first with your <strong>PayAlarm</strong> account first</h2>
 		
-          
-        </div>
         
         <div class="cleaner"></div>
 
@@ -93,19 +86,14 @@ ddsmoothmenu.init({
     <div id="tooplate_footer">
  
         <div class="col center">
-        	<h4>About Us</h4>
-            <p><em>Nullam in tortor feugiat leo elementum posuere. Vivamus tempor accumsan arcu tristique tellus placerat quis.</em></p>
-          	<div class="footer_social_button">
-                <a href="#"><img src="images/facebook.png" alt="Facebook" title="facebook" /></a>
-                <a href="#"><img src="images/flickr.png" alt="Flickr" title="flickr" /></a>
-                <a href="#"><img src="images/twitter.png" alt="Twitter" title="twitter" /></a>
-                <a href="#"><img src="images/youtube.png" alt="Youtube" title="youtube" /></a>
-                <a href="#"><img src="images/feed.png" alt="Feed" title="rss" /></a>
-			</div>
-				Copyright © 2048 <a href="#">Company Name</a>
+        	<h4>Ask us anything!</h4>
+          	<p>Contact us for enquiries at <a href="mailto:info@company.com">info@company.com</a></p>
+			<br>
+			<p>Copyright © 2017 PayAlarm</p>
         </div>
         
     	<div class="cleaner"></div>
+       
     </div> <!-- END of footer -->
 </div> <!-- END of wrapper -->
 

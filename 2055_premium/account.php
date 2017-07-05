@@ -1,8 +1,8 @@
-	<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>PayAlarm - Homepage</title>
+<title>PayAlarm - Accounts</title>
 <meta name="keywords" content="" />
 <meta name="description" content="" />
 
@@ -43,17 +43,23 @@ ddsmoothmenu.init({
 
 </script>
 
+<link rel="stylesheet" href="css/lightbox.css" type="text/css" media="screen" />
+	
+<script src="js/prototype.js" type="text/javascript"></script>
+<script src="js/scriptaculous.js?load=effects,builder" type="text/javascript"></script>
+<script src="js/lightbox.js" type="text/javascript"></script>
+
 </head>
 
 <body>
 
 <div id="tooplate_wrapper">
-	<div id="tooplate_header">
+	<div id="tooplate_header">		
     	<div id="site_title"><h1><a href="#">PayAlarm</a></h1></div>
 						<!-- NOTICE=IF ACCOUNT IS LOGGED IN, RETURN TO HOME, ELSE RETURN TO INDEX(LOGIN PAGE) -->
 
 		
-        <div id="tooplate_menu" class="ddsmoothmenu">
+       <div id="tooplate_menu" class="ddsmoothmenu">
             <ul>
                 <li><a href="home.php">Home</a></li>
                 <li><a href="account.php"  class="withsub">Account</a>
@@ -75,42 +81,32 @@ ddsmoothmenu.init({
     <div id="tooplate_main_top"></div>
     <div id="tooplate_main">
         
-        <div class="col two-third">
-        	<div class="padding_right">
-                <h2>Notifications and Updates</h2>
-				
-				<p> ***insert notifications and updates script pertaining to database here***</p>
+        <div class="col center no_margin_right">
+		<h2>Customer details and Accounts</h2>
+		<p> THE WHOLE DATABASE SCRIPT OVER HERE </p>
+		<p> TEST<br>
+			TEST<br>
+			TEST<br>
+			TEST<br>
+			TEST<br>
+			TEST<br>
+			<img src="images/data.png" alt="data image">
 			
-	
-				
-                </div>
-				<div class="cleaner"></div>
-                        
-            <div class="cleaner divider"></div>
-           
-            
-        </div>
-        
-        <div class="col one_third no_margin_right">
-            <h3>Services</h3>
-            <ul class="tooplate_list">
-            	<li><a href="#">Add new customer detail entry</a></li>
-                <li><a href="#">Clear updates and notifications(add script to clear)</a></li>
-                </ul>
-            
-            <div class="cleaner divider"></div>
-            
-            
-        </div>
+			</p>
+		</div>
+
+		<div class="cleaner divider"></div>
+
         
         <div class="cleaner"></div>
     </div> <!-- END of main -->
-    <div id="tooplate_footer">
+   <div id="tooplate_footer">
  
         <div class="col center">
         	<h4>Ask us anything!</h4>
           	<p>Contact us for enquiries at <a href="mailto:info@company.com">info@company.com</a></p>
-			<br>	Copyright © 2017 PayAlarm</p>
+			<br>
+			<p>	Copyright © 2017 PayAlarm</p>
         </div>
         
     	<div class="cleaner"></div>

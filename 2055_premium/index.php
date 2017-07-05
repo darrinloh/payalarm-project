@@ -76,11 +76,11 @@ ddsmoothmenu.init({
 			<form action="login1.php" method="POST">
 				Username:<input type="text" name="uid" placeholder="Username">
 				<br><br>
-				Password:<input type="password" name="pwd" placeholder="Password"><br>
+				Password:<input type="password" name="pwd" placeholder="Password">
+				<br>
 				<button type="submit">Login</button>
 			</form>
 			<p><small>New? <a style="cursor:pointer" href="signup.php ">Sign up now!</a></small></p>
-		</div>
 		<?php
 			if(isset($_SESSION['id'])){
 				;
@@ -89,6 +89,8 @@ ddsmoothmenu.init({
 				echo "Your username or password is incorrect.";
 			}
 		?>
+		</div>
+		
 		<div class="col one_third one_third_height fp_services">
 			<img src="images/payment.jpg" style="margin-bottom:20px"/>
 			<br>
@@ -112,6 +114,9 @@ ddsmoothmenu.init({
 		<strong>-automatic SMS system sent to the payer for regular reminders</strong><br>
 		<strong>-an easy-to-use system to store payer's details</strong><br>
 		Sign up now to get started!(Link above)</p>
+		<br><br>
+		<p>Click here for our <a href="faq.html" target="_blank"><strong>FAQ</strong></a>!</p>
+		
 		</div>
 		
 		 <div class="cleaner"></div>
@@ -122,7 +127,8 @@ ddsmoothmenu.init({
         <div class="col center">
         	<h4>Ask us anything!</h4>
           	<p>Contact us for enquiries at <a href="mailto:info@company.com">info@company.com</a></p>
-			<br>	Copyright © 2017 PayAlarm</p>
+			<br>
+			<p>Copyright © 2017 PayAlarm</p>
         </div>
         
     	<div class="cleaner"></div>

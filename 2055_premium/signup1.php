@@ -4,6 +4,13 @@
 
 $uid = $_POST['uid'];
 $pwd = $_POST['pwd'];
+$confirm = $_POST['password'];
+
+//NEWWWWWWWWWWWWW CHECKING IF PASSWORD AND CONFIRM PASSWORD SAME
+if(!$pwd == $confirm){
+	echo "<script type='text/javascript'>alert('Passwords do not match!')</script>";
+	header("Location : signup.php");
+}
 
 
 echo $uid."<br>";

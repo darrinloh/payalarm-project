@@ -56,8 +56,8 @@ ddsmoothmenu.init({
 				
         <div id="tooplate_menu" class="ddsmoothmenu">
             <ul>
-                <li><a href="home.html">Home</a></li>
-                <li><a href="account.html"  class="withsub">Account</a>
+                <li><a href="home.php">Home</a></li>
+                <li><a href="account.php"  class="withsub">Account</a>
                     <ul>
                         <li><a href="#">Sub menu 1</a></li>
                         <li><a href="#">Sub menu 2</a></li>
@@ -66,7 +66,8 @@ ddsmoothmenu.init({
                         <li><a href="#" class="last">Sub menu 5</a></li>
                         <li><span class="bottom"></span></li>
                    </ul>
-				   <li><a href="contact.html">About Us</a></li>
+				   <li><a href="contact.php">About Us</a></li>
+				   <li><a href="faq.html" target="_blank">FAQ</a></li>
               	</li>
             <br style="clear: left" />
         </div> <!-- END of menu -->
