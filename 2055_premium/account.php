@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -81,18 +85,49 @@ ddsmoothmenu.init({
     <div id="tooplate_main_top"></div>
     <div id="tooplate_main">
         
-        <div class="col center no_margin_right">
+        <div class="col no_margin_right" style="width:830px">
+		
 		<h2>Customer details and Accounts</h2>
-		<p> THE WHOLE DATABASE SCRIPT OVER HERE </p>
-		<p> TEST<br>
-			TEST<br>
-			TEST<br>
-			TEST<br>
-			TEST<br>
-			TEST<br>
-			<img src="images/data.png" alt="data image">
-			
-			</p>
+		<?php
+		$con = mysqli_connect("localhost","root","","payalarmlogin");
+		$sql = "SELECT id, uid FROM user";
+		$result = mysqli_query($con, $sql);
+		
+		if(mysqli_num_rows($result)>0){
+			while($row = mysqli_fetch_assoc($result)){
+				if($row["id"] == $_SESSION['id']){
+					$name = $row["uid"];
+				}
+			}
+		}
+		$con1 = mysql_connect("localhost","root","");
+		mysql_select_db("hello",$con1);
+		$sql= "SELECT * FROM $name";
+		$myData = mysql_query($sql, $con1);
+		echo "<table border=4>
+		<tr style='color:red;background-color:none'>
+		<th style='width:400px'>Name</th>
+		<th style='width:400px'>Amount</th>
+		<th style='width:400px'>Email</th>
+		<th style='width:400px'>Contact</th>
+		<th style='width:400px'>Due Date</th>
+		<th style='width:400px'>Remarks</th>
+		</tr>";
+		while($record=mysql_fetch_array($myData)){
+			echo "<tr>";
+			echo "<td style='Font-weight:bold'>" . $record['name'] . "</td>";
+			echo "<td>" . $record['amount'] . "</td>";
+			echo "<td>" . $record['email'] . "</td>";
+			echo "<td>" . $record['contact'] . "</td>";
+			echo "<td>" . $record['due_date'] . "</td>";
+			echo "<td>" . $record['remarks'] . "</td>";
+			echo "</tr>";
+		}
+		echo "</table>";
+		
+		mysqli_close($con);
+		?>
+		
 		</div>
 
 		<div class="cleaner divider"></div>

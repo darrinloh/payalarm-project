@@ -1,6 +1,5 @@
 <?php
-	session_start();
-
+session_start();
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -82,10 +81,7 @@ ddsmoothmenu.init({
 			</form>
 			<p><small>New? <a style="cursor:pointer" href="signup.php ">Sign up now!</a></small></p>
 		<?php
-			if(isset($_SESSION['id'])){
-				;
-			}
-			else{
+			if(!isset($_SESSION['id'])){
 				echo "Your username or password is incorrect.";
 			}
 		?>

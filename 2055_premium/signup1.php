@@ -6,30 +6,25 @@ $uid = $_POST['uid'];
 $pwd = $_POST['pwd'];
 $confirm = $_POST['password'];
 
-//NEWWWWWWWWWWWWW CHECKING IF PASSWORD AND CONFIRM PASSWORD SAME
-if(!$pwd == $confirm){
-	echo "<script type='text/javascript'>alert('Passwords do not match!')</script>";
-	header("Location : signup.php");
-}
-
-
-echo $uid."<br>";
-echo $pwd."<br>";
 
 $sql = "INSERT INTO user (uid, pwd) VALUES ('$uid','$pwd')";
 
 $result = mysqli_query($conn,$sql);
 
-$sql1 = "CREATE TABLE customerdata1(
-id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-Name VARCHAR(30) NOT NULL,
-Amount INT(6) NOT NULL,
-Due Date datetime NOT NULL)";
+$con1 =mysql_connect("localhost","root","");
 
-$conn1 = mysqli_connect("localhost","root","","");
-$result1 = mysqli_query($conn1,$sql1);
+mysql_select_db("hello",$con1);
 
-
+$hey = "CREATE TABLE $uid (
+id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY, 
+name VARCHAR(50) NOT NULL,
+amount INT NOT NULL,
+email VARCHAR(50),
+contact INT(20),
+due_date DATETIME,
+remarks VARCHAR(50)
+)";
+$res1=mysql_query($hey,$con1);
 
 
 header("Location: index.php");
