@@ -21,7 +21,7 @@ name VARCHAR(50) NOT NULL,
 amount INT NOT NULL,
 email VARCHAR(50),
 contact INT(20),
-due_date DATETIME,
+due_date DATE,
 remarks VARCHAR(50)
 )";
 $res1=mysql_query($hey,$con1);

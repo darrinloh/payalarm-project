@@ -87,18 +87,9 @@ ddsmoothmenu.init({
         
         <div class="col no_margin_right" style="width:830px">
 		
-		<h2>Customer details and Accounts</h2>
-			<form action="moddata.php" method="POST">
-				Add New Customer:<br>
-				<input type="text" name="name" placeholder="Name">
-				<input type="text" name="amount" placeholder="Amount">
-				<input type="text" name="email" placeholder="Email">
-				<input type="text" name="contact" placeholder="Contact">
-				<input type="text" name="due_date" placeholder="Due Date">
-				<input type="text" name="remarks" placeholder="Remarks">
-				
-				<input type="submit" name="add" value="Add">
-			</form>
+		
+		<h2>Edit</h2>
+		
 		<?php
 		$con = mysqli_connect("localhost","root","","payalarmlogin");
 		$sql = "SELECT id, uid FROM user";
@@ -111,45 +102,45 @@ ddsmoothmenu.init({
 				}
 			}
 		}
-		$con1 = mysql_connect("localhost","root","");
-		mysql_select_db("hello",$con1);
-		$sql= "SELECT * FROM $name";
-		$myData = mysql_query($sql, $con1);
-		echo "<table border=4>
-		<tr style='color:red;background-color:none'>
-		<th style='width:400px'>Name</th>
-		<th style='width:400px'>Amount</th>
-		<th style='width:400px'>Email</th>
-		<th style='width:400px'>Contact</th>
-		<th style='width:400px'>Due Date</th>
-		<th style='width:400px'>Remarks</th>
-		</tr>";
-		while($record=mysql_fetch_array($myData)){
-			echo "<form action=moddata.php method=POST>";
-			echo "<tr>";
-			echo "<td style='Font-weight:bold'>" . $record['name'] . "</td>";
-			echo "<td>" . $record['amount'] . "</td>";
-			echo "<td>" . $record['email'] . "</td>";
-			echo "<td>" . $record['contact'] . "</td>";
-			echo "<td>" . $record['due_date'] . "</td>";
-			echo "<td>" . $record['remarks'] . "</td>";
-			echo "<td>" . "<input type=hidden name=hidden value=" . $record['name'] . "></td>";
-			echo "<td>" . "<input type=submit name=delete value=delete>" . "</td>";
-			echo "</form>";
-			echo "<form action=edit.php method=POST>";
-			echo "<td>" . "<input type=hidden name=hid value=" . $record['id'] . "></td>";
-			echo "<td>" . "<input type=submit name=edit value=edit>" . "</td>";
-			echo "</tr>";
-			echo "</form>";
+		$hid= $_POST['hid'];
+		
+		$con1 = mysqli_connect("localhost","root","", "hello");
+		$sql1= "SELECT * FROM $name";
+		$myData = mysqli_query($con1, $sql1);
+		
+		if(mysqli_num_rows($myData)>0){
+			while($row = mysqli_fetch_assoc($myData)){
+				if($row["id"] == $hid){
+					$name = $row["name"];
+					$amount = $row["amount"];
+					$email = $row["email"];
+					$contact = $row["contact"];
+					$due_date = $row["due_date"];
+					$remarks = $row["remarks"];
+				}
+			}
 		}
-		echo "</table>";
+		
+		
+		
+		echo "<form action=moddata.php method=POST>";
+		echo	"<input type=text name=name placeholder='Name' value='$name'>";
+		echo	"<input type=text name=amount placeholder='Amount' value='$amount'>";
+		echo	"<input type=text name=email placeholder='Email' value='$email'>";
+		echo	"<input type=text name=contact placeholder='Contact' value='$contact'>";
+		echo	"<input type=text name=due_date placeholder='Due Date' value='$due_date'>";
+		echo	"<input type=text name=remarks placeholder='Remarks' value='$remarks'>";
+		echo	"<input type=hidden name=uid value='$hid'>";
+		echo	"<input type=submit name=save_changes value='Save Changes'>";
+		echo "</form>";
+	
 		
 		mysqli_close($con);
 		?>
 		
 		</div>
 		
-	
+		
 		
 		<div class="cleaner divider"></div>
 
