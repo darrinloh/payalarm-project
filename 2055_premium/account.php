@@ -68,11 +68,7 @@ ddsmoothmenu.init({
                 <li><a href="home.php">Home</a></li>
                 <li><a href="account.php"  class="withsub">Account</a>
                     <ul>
-                        <li><a href="#">Sub menu 1</a></li>
-                        <li><a href="#">Sub menu 2</a></li>
-                        <li><a href="#">Sub menu 3</a></li>
-                        <li><a href="#">Sub menu 4</a></li>
-                        <li><a href="#" class="last">Sub menu 5</a></li>
+                        <li><a href="changeDetails.php" class="last">Change details</a></li>
                         <li><span class="bottom"></span></li>
                    </ul>
 				   <li><a href="contact.php">About Us</a></li>
@@ -85,11 +81,11 @@ ddsmoothmenu.init({
     <div id="tooplate_main_top"></div>
     <div id="tooplate_main">
         
-        <div class="col no_margin_right" style="width:830px">
+        <div class="col no_margin_right" id="AddCustomer" style="width:830px">
 		
 		<h2>Customer details and Accounts</h2>
 			<form action="moddata.php" method="POST">
-				Add New Customer:<br>
+				<b>Add New Customer:</b><br>
 				<input type="text" name="name" placeholder="Name">
 				<input type="text" name="amount" placeholder="Amount">
 				<input type="text" name="email" placeholder="Email">
@@ -99,8 +95,14 @@ ddsmoothmenu.init({
 				
 				<input type="submit" name="add" value="Add">
 			</form>
+			</div>
+			<div class="cleaner"></div>
+                        
+            <div class="cleaner divider"></div>
+
+			<div class="col no_margin_right" id="Table" style="width:830px">
 		<?php
-		$con = mysqli_connect("localhost","root","","payalarmlogin");
+		$con = mysqli_connect("localhost","root","","payalarmlogin");				//diff file begin
 		$sql = "SELECT id, uid FROM user";
 		$result = mysqli_query($con, $sql);
 		
@@ -114,7 +116,7 @@ ddsmoothmenu.init({
 		$con1 = mysql_connect("localhost","root","");
 		mysql_select_db("hello",$con1);
 		$sql= "SELECT * FROM $name";
-		$myData = mysql_query($sql, $con1);
+		$myData = mysql_query($sql, $con1);												//diff file end
 		echo "<table border=4>
 		<tr style='color:red;background-color:none'>
 		<th style='width:400px'>Name</th>
@@ -146,7 +148,9 @@ ddsmoothmenu.init({
 		
 		mysqli_close($con);
 		?>
+		<br><br><br>
 		
+		<p style="text-align:center"> <a href="account.php#site_title" ">Click Here to go to the top of the page!</a></p>
 		</div>
 		
 	

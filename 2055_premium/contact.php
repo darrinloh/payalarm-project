@@ -59,11 +59,7 @@ ddsmoothmenu.init({
                 <li><a href="home.php">Home</a></li>
                 <li><a href="account.php"  class="withsub">Account</a>
                     <ul>
-                        <li><a href="#">Sub menu 1</a></li>
-                        <li><a href="#">Sub menu 2</a></li>
-                        <li><a href="#">Sub menu 3</a></li>
-                        <li><a href="#">Sub menu 4</a></li>
-                        <li><a href="#" class="last">Sub menu 5</a></li>
+                        <li><a href="changeDetails.php" class="last">Change details</a></li>
                         <li><span class="bottom"></span></li>
                    </ul>
 				   <li><a href="contact.php">About Us</a></li>

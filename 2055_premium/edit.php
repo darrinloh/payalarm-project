@@ -6,7 +6,7 @@ session_start();
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>PayAlarm - Accounts</title>
+<title>PayAlarm - Edit Customer Details</title>
 <meta name="keywords" content="" />
 <meta name="description" content="" />
 
@@ -68,11 +68,7 @@ ddsmoothmenu.init({
                 <li><a href="home.php">Home</a></li>
                 <li><a href="account.php"  class="withsub">Account</a>
                     <ul>
-                        <li><a href="#">Sub menu 1</a></li>
-                        <li><a href="#">Sub menu 2</a></li>
-                        <li><a href="#">Sub menu 3</a></li>
-                        <li><a href="#">Sub menu 4</a></li>
-                        <li><a href="#" class="last">Sub menu 5</a></li>
+                        <li><a href="changeDetails.php" class="last">Change details</a></li>
                         <li><span class="bottom"></span></li>
                    </ul>
 				   <li><a href="contact.php">About Us</a></li>

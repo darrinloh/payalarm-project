@@ -58,11 +58,7 @@ ddsmoothmenu.init({
                 <li><a href="home.php">Home</a></li>
                 <li><a href="account.php"  class="withsub">Account</a>
                     <ul>
-                        <li><a href="#">Sub menu 1</a></li>
-                        <li><a href="#">Sub menu 2</a></li>
-                        <li><a href="#">Sub menu 3</a></li>
-                        <li><a href="#">Sub menu 4</a></li>
-                        <li><a href="#" class="last">Sub menu 5</a></li>
+                        <li><a href="changeDetails.php" class="last">Change details</a></li>
                         <li><span class="bottom"></span></li>
                    </ul>
 				   <li><a href="contact.php">About Us</a></li>
@@ -74,7 +70,19 @@ ddsmoothmenu.init({
 
     <div id="tooplate_main_top"></div>
     <div id="tooplate_main">
-        
+         <div class="col two_third" style="width:830px; text-align:center">
+		<h1 style="color:blue; font-family:Georgia; "><u><b>HOME PAGE</b></u>	</h1>	
+		 <p> Welcome to your very own PayAlarm account! We hope you enjoy our services!</p>
+		 <h3><u>Manoeuvring tips</u></h3>
+		 <p> To see your entire database, click the <strong>Account</strong> link in the toolbar above.</p>
+		 <p>To Change your account details(password, email etc), hover over the Account link and select <strong>change details</strong>.</p>
+		 
+		 </div>
+		 
+		 
+		<div class="cleaner"></div> 
+		<div class="cleaner divider"></div> 
+		
         <div class="col two-third">
         	<div class="padding_right">
                 <h2>Notifications and Updates</h2>
@@ -94,8 +102,8 @@ ddsmoothmenu.init({
         <div class="col one_third no_margin_right">
             <h3>Services</h3>
             <ul class="tooplate_list">
-            	<li><a href="#">Add new customer detail entry</a></li>
-                <li><a href="#">Clear updates and notifications(add script to clear)</a></li>
+            	<li><a href="account.php#AddCustomer">Add new customer detail entry</a></li>
+                <li><a href="account.php#Table">View Customer Database Table</a></li>
                 </ul>
             
             <div class="cleaner divider"></div>

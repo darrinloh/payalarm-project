@@ -4,16 +4,15 @@ session_start();
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
-<head> 
+<head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>PayAlarm - A simple payment tracking system!</title>
-<meta name="keywords" content="payment, simple, system, tracking, payalarm, pay " />
-<meta name="description" content="A simple payment system for anyone to use" />
-
+<title>PayAlarm - Change account details</title>
+<meta name="keywords" content="" />
+<meta name="description" content="" />
 
 <link href="css/tooplate_style.css" rel="stylesheet" type="text/css" />
 
-<link rel="stylesheet" href="css/nivo-slider.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="nivo-slider.css" type="text/css" media="screen" />
 
 <script language="javascript" type="text/javascript">
 function clearText(field)
@@ -48,84 +47,73 @@ ddsmoothmenu.init({
 
 </script>
 
+<link rel="stylesheet" href="css/lightbox.css" type="text/css" media="screen" />
+	
+<script src="js/prototype.js" type="text/javascript"></script>
+<script src="js/scriptaculous.js?load=effects,builder" type="text/javascript"></script>
+<script src="js/lightbox.js" type="text/javascript"></script>
+
 </head>
 
 <body>
 
 <div id="tooplate_wrapper">
-	<div id="tooplate_header">
+	<div id="tooplate_header">		
     	<div id="site_title"><h1><a href="#">PayAlarm</a></h1></div>
-		
 						<!-- NOTICE=IF ACCOUNT IS LOGGED IN, RETURN TO HOME, ELSE RETURN TO INDEX(LOGIN PAGE) -->
 
-        <div id="tooplate_menu" class="ddsmoothmenu">
 		
-            
+       <div id="tooplate_menu" class="ddsmoothmenu">
+            <ul>
+                <li><a href="home.php">Home</a></li>
+                <li><a href="account.php"  class="withsub">Account</a>
+                    <ul>
+                        <li><a href="changeDetails.php" class="last">Change details</a></li>
+                        <li><span class="bottom"></span></li>
+                   </ul>
+				   <li><a href="contact.php">About Us</a></li>
+				   <li><a href="faq.html" target="_blank">FAQ</a></li>
+              	</li>
             <br style="clear: left" />
         </div> <!-- END of menu -->
     </div> <!-- END of header-->
-    
+
     <div id="tooplate_main_top"></div>
     <div id="tooplate_main">
-    	 
-		
-        <div class="col center fp_services">
-            <img src="images/login.png" alt="login" />
-            <h2>Login</a></h2>
-            <p>Enter your Username and Password</p>
-			<form action="login1.php" method="POST">
-				Username:<input type="text" name="uid" placeholder="Username">
-				<br><br>
-				Password:<input type="password" name="pwd" placeholder="Password">
-				<br>
-				<button type="submit">Login</button>
-			</form>
-			<p><small>New? <a style="cursor:pointer" href="signup.php ">Sign up now!</a></small></p>
-		<?php
-			if(!isset($_SESSION['id'])){
-				echo "Your username or password is incorrect.";
-			}
-		?>
-		</div>
-		
-		<div class="col one_third one_third_height fp_services">
-			<img src="images/payment.jpg" style="margin-bottom:20px"/>
-			<br>
-			<br>
-			<br>
-			<h2 style="text-align:left ; width:220px ;font-size:30px; line-height:25px"> 
-			To use our services, login first with your <strong>PayAlarm</strong> account first</h2>
-		
-          
-        </div>
         
-       
-
-        <div class="cleaner divider"></div>
+        <div class="col no_margin_right" style="width:830px">
 		
-		<h2> What is PayAlarm?????</h2>
 		
-		<div class="col center" style="width:540px">
-		<p><strong>PayAlarm</strong> is a web app of a simple payment tracking system to be used by a payee. In other words,it helps one to keep track of due payments from debtors!
-		Some features include...<br>
-		<strong>-automatic SMS system sent to the payer for regular reminders</strong><br>
-		<strong>-an easy-to-use system to store payer's details</strong><br>
-		Sign up now to get started!(Link above)</p>
-		<br><br>
-		<p>Click here for our <a href="faq.html" target="_blank"><strong>FAQ</strong></a>!</p>
+		<h2>Change Account Details</h2>
+		
+		<form action="change.php" method="post">
+			Enter new password<input type="text" name="newPw" placeholder="New Password">
+			<input type="submit" name="pass" value="Change password">
+			<br><br>
+		
+			Enter new email address<input type="text" name="newEmail" placeholder="New Email Address">
+			<input type="submit" name="email" value="Change email">
+			<br><br>
+		</form>
+		
+		
 		
 		</div>
 		
-		 <div class="cleaner"></div>
-   
+		
+		
+		<div class="cleaner divider"></div>
+
+        
+        <div class="cleaner"></div>
     </div> <!-- END of main -->
-    <div id="tooplate_footer">
+   <div id="tooplate_footer">
  
         <div class="col center">
         	<h4>Ask us anything!</h4>
           	<p>Contact us for enquiries at <a href="mailto:info@company.com">info@company.com</a></p>
 			<br>
-			<p>Copyright © 2017 PayAlarm</p>
+			<p>	Copyright © 2017 PayAlarm</p>
         </div>
         
     	<div class="cleaner"></div>
