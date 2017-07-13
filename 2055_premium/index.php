@@ -83,7 +83,7 @@ ddsmoothmenu.init({
 			<p><small>New? <a style="cursor:pointer" href="signup.php ">Sign up now!</a></small></p>
 		<?php
 			if (isset($_GET["msg"]) && $_GET["msg"] == 'failed') {
-				echo "Wrong Username / Password";
+				echo "<div style='color:red'><b>Incorrect Username or Password</b></div>";
 }
 		?>
 		</div>

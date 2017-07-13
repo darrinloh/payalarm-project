@@ -97,14 +97,26 @@ ddsmoothmenu.init({
 				<input type="text" name="amount" placeholder="Amount">
 				<input type="text" name="email" placeholder="Email">
 				<input type="text" name="contact" placeholder="Contact">
-				<input type="text" name="due_date" placeholder="Due Date">
+				<input type="text" name="due_date" placeholder="Due Date(dd/mm/yyyy)">
 				<textarea style="font-family:arial" rows="6" cols="50" name="remarks" form="mod" placeholder="Remarks"></textarea>
 				
 				<input type="submit" name="add" value="Add">
 			</form>
+			<?php
+				if (isset($_GET["msg"]) && $_GET["msg"] == 'wrong') {
+					echo "<div style='color:red'><b>Incorrect date format</b></div>";
+					}
+					elseif(isset($_GET["msg"]) && $_GET["msg"] == 'wrong1'){
+					echo "<div style='color:red'><b>Incorrect date</b></div>";
+					}
+					elseif(isset($_GET["msg"]) && $_GET["msg"] == 'wrong2'){
+					echo "<div style='color:red'><b>Name already taken(Try to add identifiers to the back of the name eg. Michael and Michael 2</b></div>";
+					}
+				?>
 						<form name="form1" method="POST" action=search.php>
 			<input name="search" type="text" size="20">
 			<input type="submit" name="Submit" value="Search" />
+			</form>
 			</div>
 			<div class="cleaner"></div>
                         
