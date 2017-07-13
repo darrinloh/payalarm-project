@@ -1,9 +1,30 @@
 <?php
 session_start();
-if (!isset($_SESSION["id"]))
-   {
-      header("location: index.php");
-   }
+if (!isset($_SESSION["id"])){
+	header("location: index.php");
+}
+if(!isset($_POST['search'])){
+	header("Location:account.php");
+}
+$con = mysqli_connect("localhost","root","","payalarmlogin");				//diff file begin
+		$sql = "SELECT id, uid FROM user";
+		$result = mysqli_query($con, $sql);
+		
+		if(mysqli_num_rows($result)>0){
+			while($row = mysqli_fetch_assoc($result)){
+				if($row["id"] == $_SESSION['id']){
+					$name = $row["uid"];
+				}
+			}
+		}
+		
+$search_sql="SELECT * FROM customerdata where $name LIKE '%".$_POST['search']."%' OR description LIKE '%".$_POST['search']."%'";
+$search_query=mysql_query($search_sql);
+if(mysql_num_rows($search_query)>0){
+	$search_rs=mysql_fetch_assoc($search_query);
+}
+   
+   
 ?>
 
 
@@ -87,72 +108,12 @@ ddsmoothmenu.init({
     <div id="tooplate_main_top"></div>
     <div id="tooplate_main">
         
-        <div class="col no_margin_right" id="AddCustomer" style="width:830px">
-		
-		
-		<h2>Customer details and Accounts</h2>
-			<form action="moddata.php" method="POST" id="mod">
-				<b>Add New Customer:</b><br>
-				<input type="text" name="name" placeholder="Name">
-				<input type="text" name="amount" placeholder="Amount">
-				<input type="text" name="email" placeholder="Email">
-				<input type="text" name="contact" placeholder="Contact">
-				<input type="text" name="due_date" placeholder="Due Date">
-				<textarea style="font-family:arial" rows="6" cols="50" name="remarks" form="mod" placeholder="Remarks"></textarea>
-				
-				<input type="submit" name="add" value="Add">
-			</form>
-						<form name="form1" method="POST" action=search.php>
-			<input name="search" type="text" size="20">
-			<input type="submit" name="Submit" value="Search" />
-			</div>
-			<div class="cleaner"></div>
-                        
-			
-            <div class="cleaner divider"></div>
+        
+	
 
 			<div class="col no_margin_right" id="Table" style="width:830px">
+			<h2>Search results</h2>
 		<?php
-		$con = mysqli_connect("localhost","root","","payalarmlogin");				//diff file begin
-		$sql = "SELECT id, uid FROM user";
-		$result = mysqli_query($con, $sql);
-		
-		if(mysqli_num_rows($result)>0){
-			while($row = mysqli_fetch_assoc($result)){
-				if($row["id"] == $_SESSION['id']){
-					$name = $row["uid"];
-				}
-			}
-		}
-		$con1 = mysql_connect("localhost","root","");
-		mysql_select_db("customerdata",$con1);
-		$sql= "SELECT * FROM $name";
-		if (isset($_GET["msg"])){
-			if ($_GET['msg'] == 'name'){	
-			
-				$sql = "SELECT * FROM $name ORDER BY name";
-			}
-			
-			elseif ($_GET['msg'] == 'amount'){
-				$sql= "SELECT * FROM $name ORDER BY amount";
-			}
-			
-			elseif ($_GET['msg'] == 'email'){
-				$sql= "SELECT * FROM $name ORDER BY email";
-			}
-			elseif ($_GET['msg'] == 'contact'){
-				$sql= "SELECT * FROM $name ORDER BY contact";
-			}
-			elseif ($_GET['msg'] == 'due_date'){
-				$sql= "SELECT * FROM $name ORDER BY due_date";
-			}
-			$myData = mysql_query($sql, $con1);	
-		}
-		else{
-			$sql = "SELECT * FROM $name ORDER BY name";
-			$myData = mysql_query($sql, $con1);	
-		}
-		echo "<table border=4>
 		
 		<tr style='color:red;background-color:none'>
 		<th style='width:400px'><a href='account.php?msg=name'>Name</a></th>
@@ -164,8 +125,8 @@ ddsmoothmenu.init({
 		</tr>";
 		
 
-
-		while($record=mysql_fetch_array($myData)){
+		if(mysqli_num_rows($search_query>0)){
+		while($record=mysql_fetch_assoc($search_query)){
 			echo "<form action=moddata.php method=POST>";
 			echo "<tr>";
 			echo "<td style='Font-weight:bold'>" . $record['name'] . "</td>";
@@ -184,15 +145,18 @@ ddsmoothmenu.init({
 			echo "</form>";
 		}
 		echo "</table>";
-		
+		}
+		else{
+			echo "No results found";
+		}
 		mysqli_close($con);
 		?>
 		<br><br><br>
 		
-		<p style="text-align:center"> <a href="account.php#site_title" ">Click Here to go to the top of the page!</a></p>
+		<p style="text-align:center"> <a href="account.php#site_title" >Click Here to go to the top of the page!</a></p>
 		</div>
 		
-	
+	  <div class="cleaner"></div>
 		
 		<div class="cleaner divider"></div>
 

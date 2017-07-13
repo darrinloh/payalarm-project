@@ -10,7 +10,7 @@
 			$nameOfUser = $row["uid"];
 		}
 	}
-	$con1 = mysqli_connect("localhost", "root","","hello");
+	$con1 = mysqli_connect("localhost", "root","","customerdata");
 	
 	if(isset($_POST['add'])){
 		$name = $_POST['name'];
