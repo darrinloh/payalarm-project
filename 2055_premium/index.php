@@ -54,7 +54,7 @@ ddsmoothmenu.init({
 
 <div id="tooplate_wrapper">
 	<div id="tooplate_header">
-    	<div id="site_title"><h1><a href="#">PayAlarm</a></h1></div>
+    	<div id="site_title"><h1><a href="redirect.php">PayAlarm</a></h1></div>
 		
 						<!-- NOTICE=IF ACCOUNT IS LOGGED IN, RETURN TO HOME, ELSE RETURN TO INDEX(LOGIN PAGE) -->
 
@@ -84,7 +84,7 @@ ddsmoothmenu.init({
 		<?php
 			if (isset($_GET["msg"]) && $_GET["msg"] == 'failed') {
 				echo "<div style='color:red'><b>Incorrect Username or Password</b></div>";
-}
+}			
 		?>
 		</div>
 		

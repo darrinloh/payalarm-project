@@ -1,4 +1,4 @@
-<?php
+	<?php
 session_start();
 if (!isset($_SESSION["id"]))
    {
@@ -64,7 +64,7 @@ ddsmoothmenu.init({
 
 <div id="tooplate_wrapper">
 	<div id="tooplate_header">		
-    	<div id="site_title"><h1><a href="#">PayAlarm</a></h1></div>
+    	<div id="site_title"><h1><a href="redirect.php">PayAlarm</a></h1></div>
 						<!-- NOTICE=IF ACCOUNT IS LOGGED IN, RETURN TO HOME, ELSE RETURN TO INDEX(LOGIN PAGE) -->
 
 		
@@ -98,7 +98,7 @@ ddsmoothmenu.init({
 				<input type="text" name="email" placeholder="Email">
 				<input type="text" name="contact" placeholder="Contact">
 				<input type="text" name="due_date" placeholder="Due Date(dd/mm/yyyy)">
-				<textarea style="font-family:arial" rows="6" cols="50" name="remarks" form="mod" placeholder="Remarks"></textarea>
+				<textarea style="font-family:arial" rows="6" cols="50" name="remarks" form="mod" placeholder="Remarks(max 250 characters)"></textarea>
 				
 				<input type="submit" name="add" value="Add">
 			</form>

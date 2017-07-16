@@ -73,6 +73,7 @@ ddsmoothmenu.init({
                    </ul>
 				   <li><a href="contact.php">About Us</a></li>
 				   <li><a href="faq.html" target="_blank">FAQ</a></li>
+				   <li><a href="logout.php">Log Out</a></li>
               	</li>
             <br style="clear: left" />
         </div> <!-- END of menu -->

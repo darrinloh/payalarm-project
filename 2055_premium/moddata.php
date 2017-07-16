@@ -20,6 +20,8 @@
 		$due_date = $_POST['due_date'];
 		$remarks = $_POST['remarks'];
 		
+	
+		
 		$d=(int)substr($due_date,0,2);    //date
 		$m=(int)substr($due_date,3,2);		//month
 		$y=(int)substr($due_date,6);			//year
@@ -65,6 +67,9 @@
 		$AddQuery = "INSERT INTO $nameOfUser (name, amount, email, contact, due_date, remarks) VALUES ('$name','$amount', '$email', '$contact', '$due_date', '$remarks')";
 
 		$result1 = mysqli_query($con1,$AddQuery);
+		if($result1){
+			echo"yay";
+		}
 		$page="account.php";
 		}
 		elseif($error==1){
