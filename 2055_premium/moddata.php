@@ -31,18 +31,19 @@
 		
 		$error = 0;
 		
-		$check = "SELECT name FROM $nameOfUser";
+		$check = "SELECT name FROM $nameOfUser WHERE name='$name'";
 		$checkRes=mysqli_query($con1,$check);
-		
-		while($row = mysqli_fetch_assoc($checkRes)){
-		if($row["name"] == $name){
-			$error=3;
+		if(mysqli_num_rows($checkRes) > 0){
+		$error=3;
 		}
-	}
+		
 		if($error==0){
 		if($test1 != '/' || $test2 != '/' || $leftover !=''){ 	 
 			$error = 1;
 		}
+		}
+		if(!is_numeric($contact) || !is_numeric($amount)){
+			$error=4;
 		}
 	
 		if($error ==0){
@@ -61,15 +62,13 @@
 			if($y<0){
 				$error = 2;			
 			}
-		}
-				
+		}			
+
 		if($error == 0){
 		$AddQuery = "INSERT INTO $nameOfUser (name, amount, email, contact, due_date, remarks) VALUES ('$name','$amount', '$email', '$contact', '$due_date', '$remarks')";
 
 		$result1 = mysqli_query($con1,$AddQuery);
-		if($result1){
-			echo"yay";
-		}
+		
 		$page="account.php";
 		}
 		elseif($error==1){
@@ -81,9 +80,13 @@
 		elseif($error==3){
 			$page="account.php?msg=wrong2";
 		}
+		elseif($error==4){
+				$page="account.php?msg=wrong3";
+			}
 	}
 	
-	if(isset($_POST['delete'])){
+	
+	elseif(isset($_POST['delete'])){
 		$name1= $_POST['hidden'];
 		
 		$DeleteQuery = "DELETE FROM $nameOfUser WHERE name='$name1'";
@@ -91,7 +94,7 @@
 		$result2=mysqli_query($con1, $DeleteQuery);
 		$page="account.php";
 	}
-	if(isset($_POST['save_changes'])){
+	elseif(isset($_POST['save_changes'])){
 		
 		$name2 = $_POST['name'];
 		$amount2 = $_POST['amount'];
@@ -99,10 +102,83 @@
 		$contact2 = $_POST['contact'];
 		$due_date2 = $_POST['due_date'];
 		$remarks2 = $_POST['remarks'];
+		$hid = $_POST['hid'];
 		
-		$EditQuery = "UPDATE $nameOfUser SET name='$name2', amount='$amount2', email='$email2', contact='$contact2',due_date='$due_date2',remarks='$remarks2' WHERE id='$_POST[uid]'";
+		$d=(int)substr($due_date2,0,2);    //date
+		$m=(int)substr($due_date2,3,2);		//month
+		$y=(int)substr($due_date2,6);			//year
+		$leftover=substr($due_date2,10);
+		$test1=substr($due_date2,2,1);
+		$test2=substr($due_date2,5,1);
 		
-		mysqli_query($con1,$EditQuery);
-		$page="account.php";
+		$error = 0;
+		$check = "SELECT name FROM $nameOfUser WHERE id='$hid'";
+		$checkRes=mysqli_query($con1,$check);
+		$row = mysqli_fetch_assoc($checkRes);	
+	
+		if($name2 == $row['name']){			//name unchanged
+		}
+		else{
+			$check1 = "SELECT name FROM $nameOfUser WHERE name='$name2'";
+			$checkRes1=mysqli_query($con1,$check1);
+			if(mysqli_num_rows($checkRes1) > 0){
+				$error =3;
+			}
+	
+		}
+		if(!is_numeric($contact2) || !is_numeric($amount2)){
+			$error=4;
+		}
+		
+		if($error==0){
+			if($test1 != '/' || $test2 != '/' || $leftover !=''){ 	 
+			$error = 1;
+			}
+		}
+	
+		if($error ==0){
+			if($y%4 ==0){
+				if($m == 02 && ($d<1 || $d>28)){
+				$error = 2;
+				}			
+			}
+			if($d<1 || $d >31){
+				$error = 2;			
+			}
+			
+			if($m<1 || $m >12){
+				$error = 2;			
+			}
+			if($y<0){
+				$error = 2;			
+			}
+		}			
+
+		if($error==0){
+			$EditQuery = "UPDATE $nameOfUser SET name='$name2', amount='$amount2', email='$email2', contact='$contact2',due_date='$due_date2',remarks='$remarks2' WHERE id='$hid'";
+		
+			$edit_res=mysqli_query($con1,$EditQuery);
+		
+			$page="account.php";
+		}
+		elseif($error!=0){
+			$_SESSION['POST'] = $hid;
+			if($error==1){
+				$page="edit.php?msg=wrong";
+			}
+			elseif($error==2){
+				$page="edit.php?msg=wrong1";
+			}
+			elseif($error==3){
+				$page="edit.php?msg=wrong2";
+			}
+			elseif($error==4){
+				$page="edit.php?msg=wrong3";
+			}
+			
+		}
 	}
+	
+	
+	//echo"$error";
 	header("Location: $page");

@@ -94,9 +94,9 @@ ddsmoothmenu.init({
 			<form action="moddata.php" method="POST" id="mod">
 				<b>Add New Customer:</b><br>
 				<input type="text" name="name" placeholder="Name">
-				<input type="text" name="amount" placeholder="Amount">
+				<input type="text" name="amount" placeholder="Amount(Numbers only)">
 				<input type="text" name="email" placeholder="Email">
-				<input type="text" name="contact" placeholder="Contact">
+				<input type="text" name="contact" placeholder="Contact(Numbers only)">
 				<input type="text" name="due_date" placeholder="Due Date(dd/mm/yyyy)">
 				<textarea style="font-family:arial" rows="6" cols="50" name="remarks" form="mod" placeholder="Remarks(max 250 characters)"></textarea>
 				
@@ -111,6 +111,9 @@ ddsmoothmenu.init({
 					}
 					elseif(isset($_GET["msg"]) && $_GET["msg"] == 'wrong2'){
 					echo "<div style='color:red'><b>Name already taken(Try to add identifiers to the back of the name eg. Michael and Michael 2</b></div>";
+					}
+					elseif(isset($_GET["msg"]) && $_GET["msg"] == 'wrong3'){
+					echo "<div style='color:red'><b>Amount or Contact must only contain numbers</b></div>";
 					}
 				?>
 						<form name="form1" method="POST" action=search.php>

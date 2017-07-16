@@ -73,6 +73,7 @@ ddsmoothmenu.init({
                    </ul>
 				   <li><a href="contact.php">About Us</a></li>
 				   <li><a href="faq.html" target="_blank">FAQ</a></li>
+				   <li><a href="logout.php">Log Out</a></li>
               	</li>
             <br style="clear: left" />
         </div> <!-- END of menu -->
@@ -98,12 +99,17 @@ ddsmoothmenu.init({
 				}
 			}
 		}
-		$hid= $_POST['hid'];
-		
-		$con1 = mysqli_connect("localhost","root","", "hello");
+		if(!empty($_SESSION['POST'])){
+			$hid= $_SESSION['POST'];
+			$_SESSION['POST'] = "";
+			}
+		else{
+			$hid= $_POST['hid'];
+		}
+		$con1 = mysqli_connect("localhost","root","", "customerdata");
 		$sql1= "SELECT * FROM $name";
 		$myData = mysqli_query($con1, $sql1);
-		
+			
 		if(mysqli_num_rows($myData)>0){
 			while($row = mysqli_fetch_assoc($myData)){
 				if($row["id"] == $hid){
@@ -119,16 +125,30 @@ ddsmoothmenu.init({
 		
 		
 		
-		echo "<form action=moddata.php method=POST>";
+		echo "<form action=moddata.php method=POST id=edit>";
 		echo	"<input type=text name=name placeholder='Name' value='$name'>";
-		echo	"<input type=text name=amount placeholder='Amount' value='$amount'>";
+		echo	"<input type=text name=amount placeholder='Amount(Numbers only)' value='$amount'>";
 		echo	"<input type=text name=email placeholder='Email' value='$email'>";
-		echo	"<input type=text name=contact placeholder='Contact' value='$contact'>";
+		echo	"<input type=text name=contact placeholder='Contact(Numbers only)' value='$contact'>";
 		echo	"<input type=text name=due_date placeholder='Due Date' value='$due_date'>";
-		echo	"<input type=text name=remarks placeholder='Remarks' value='$remarks'>";
-		echo	"<input type=hidden name=uid value='$hid'>";
+		echo	"<textarea style='font-family:arial' rows='6' cols='50' name='remarks' form='edit' placeholder='Remarks(max 250 characters)' >$remarks</textarea>";
+		echo	"<input type=hidden name=hid value='$hid'>";
+		echo	"<br>";
 		echo	"<input type=submit name=save_changes value='Save Changes'>";
 		echo "</form>";
+	
+		if (isset($_GET["msg"]) && $_GET["msg"] == 'wrong') {
+			echo "<div style='color:red'><b>Incorrect date format</b></div>";
+		}
+		elseif(isset($_GET["msg"]) && $_GET["msg"] == 'wrong1'){
+			echo "<div style='color:red'><b>Incorrect date</b></div>";
+		}
+		elseif(isset($_GET["msg"]) && $_GET["msg"] == 'wrong2'){
+			echo "<div style='color:red'><b>Name already taken(Try to add identifiers to the back of the name eg. Michael and Michael 2</b></div>";
+		}
+		elseif(isset($_GET["msg"]) && $_GET["msg"] == 'wrong3'){
+				echo "<div style='color:red'><b>Amount or Contact must only contain numbers</b></div>";
+		}
 	
 		
 		mysqli_close($con);
