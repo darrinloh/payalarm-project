@@ -1,6 +1,11 @@
 <?php
 session_start();
+if (!isset($_SESSION["id"]))
+   {
+      header("location: index.php");
+   }
 ?>
+
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -95,9 +100,20 @@ ddsmoothmenu.init({
 			Enter new email address<input type="text" name="newEmail" placeholder="New Email Address">
 			<input type="submit" name="email" value="Change email">
 			<br><br>
+			<br><br>
+			
+			
 		</form>
+		<?php
+			$hid = $_SESSION['id'];
+			echo 	"<form action=change.php method='post'>";
+			echo	"<p style='color:red'><b>To delete your account and all it's data, click the button below</b></p><br>";
+			echo	"<input type=submit name=delete value=Delete account onclick=\"return confirm('Are you sure you wish to delete your account?')\">";
+			echo	"<input type=hidden name=hid value='$hid'>";
+			echo 	"</form>";
 		
-		
+		?>
+
 		
 		</div>
 		

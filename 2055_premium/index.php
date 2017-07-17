@@ -82,9 +82,12 @@ ddsmoothmenu.init({
 			</form>
 			<p><small>New? <a style="cursor:pointer" href="signup.php ">Sign up now!</a></small></p>
 		<?php
-			if (isset($_GET["msg"]) && $_GET["msg"] == 'failed') {
-				echo "<div style='color:red'><b>Incorrect Username or Password</b></div>";
-}			
+			include 'indexError.php';
+			
+			if (isset($msg)){
+				echo "<div style='color:red'><b>'$msg'</b></div>";
+				unset($msg);
+			}			
 		?>
 		</div>
 		

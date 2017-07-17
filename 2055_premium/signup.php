@@ -63,7 +63,7 @@ ddsmoothmenu.init({
     <div id="tooplate_main_top"></div>
     <div id="tooplate_main">
     	       
-        <div class="col center fp_services" style="width:660px">
+        <div class="col center fp_services" style="width:660px">	
             <img src="images/login.png" alt="login" />
 
 			<form action="signup1.php" method="POST" style="float:right">
@@ -77,7 +77,10 @@ ddsmoothmenu.init({
 				<br><br>
 				<input type="submit" value="Sign Up">
 			</form>
-
+			
+			<?php
+			include 'errorCheck1.php';
+			?>
 
 			
 		</div>

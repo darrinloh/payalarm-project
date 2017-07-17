@@ -9,7 +9,9 @@ $sql = "SELECT * FROM user WHERE uid='$uid' AND pwd='$pwd'";
 $result = mysqli_query($conn,$sql);
 
 if(!$row=mysqli_fetch_assoc($result)){
-	header("location:index.php?msg=failed");
+	$_SESSION["temp"]="error1";
+	header("location:index.php");
+	exit;
 }
 else{
 	$_SESSION['id']=$row['id'];

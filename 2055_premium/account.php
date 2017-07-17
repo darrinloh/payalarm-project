@@ -167,34 +167,43 @@ ddsmoothmenu.init({
 			$sql = "SELECT * FROM $name ORDER BY name";
 			$myData = mysql_query($sql, $con1);	
 		}
-		echo "<table border=4>
+		
+		echo "<style>";
+		
+		echo ".data {word-wrap:break-word; width:108px; }";
+		echo "table {table-layout:fixed; width:850px}";
+		echo ".rem {word-wrap:break-word; width:150px;  }";
+		echo ".edit{ width:20px;  }";
+		echo "</style>";
+
+		echo "<table border=4 style='table-layout:fixed'>
 		
 		<tr style='color:red;background-color:none'>
-		<th style='width:400px'><a href='account.php?msg=name'>Name</a></th>
-		<th style='width:400px'><a href='account.php?msg=amount'>Amount</a></th>
-		<th style='width:400px'><a href='account.php?msg=email'>Email</a></th>
-		<th style='width:400px'><a href='account.php?msg=contact'>Contact</a></th>
-		<th style='width:400px'><a href='account.php?msg=due_date'>Due Date</a></th>
-		<th style='width:400px'>Remarks</th>
+		<th class='data' ><a href='account.php?msg=name'>Name</a></th>
+		<th class='data'><a href='account.php?msg=amount'>Amount</a></th>
+		<th class='data'><a href='account.php?msg=email'>Email</a></th>
+		<th class='data'><a href='account.php?msg=contact'>Contact</a></th>
+		<th class='data'><a href='account.php?msg=due_date'>Due Date</a></th>
+		<th class='rem'>Remarks</th>
 		</tr>";
 		
-
-
+		
+		
 		while($record=mysql_fetch_array($myData)){
 			echo "<form action=moddata.php method=POST>";
-			echo "<tr>";
-			echo "<td style='Font-weight:bold'>" . $record['name'] . "</td>";
-			echo "<td>" . $record['amount'] . "</td>";
-			echo "<td>" . $record['email'] . "</td>";
-			echo "<td>" . $record['contact'] . "</td>";
-			echo "<td>" . $record['due_date'] . "</td>";
-			echo "<td>" . $record['remarks'] . "</td>";
-			echo "<td>" . "<input type=hidden name=hidden value=" . $record['name'] . "></td>";
-			echo "<td>" . "<input type=submit name=delete value=delete>" . "</td>";
+			echo "<tr style:'height:auto'>";
+			echo "<td class='data' style='Font-weight:bold'>" . $record['name'] . "</td>";
+			echo "<td class='data'>" . $record['amount'] . "</td>";
+			echo "<td class='data'>" . $record['email'] . "</td>";
+			echo "<td class='data'>" . $record['contact'] . "</td>";
+			echo "<td class='data'>" . $record['due_date'] . "</td>";
+			echo "<td class='rem'>" . $record['remarks'] . "</td>";
+			echo "<input type=hidden name=hidden value=" . $record['name'] . ">";
+			echo "<td class'='edit';>" . "<input type=submit name=delete value=delete>" . "</td>";
 			echo "</form>";
 			echo "<form action=edit.php method=POST>";
-			echo "<td>" . "<input type=hidden name=hid value=" . $record['id'] . "></td>";
-			echo "<td>" . "<input type=submit name=edit value=edit>" . "</td>";
+			echo "<input type=hidden name=hid value=" . $record['id'] . ">";
+			echo "<td class='edit'>" . "<input type=submit name=edit value=edit>" . "</td>";
 			echo "</tr>";
 			echo "</form>";
 		}

@@ -85,7 +85,12 @@ ddsmoothmenu.init({
 		 <h3><u>Manoeuvring tips</u></h3>
 		 <p> To see your entire database, click the <strong>Account</strong> link in the toolbar above.</p>
 		 <p>To Change your account details(password, email etc), hover over the Account link and select <strong>change details</strong>.</p>
-		 
+		<?php 
+		 if (isset($_SESSION["temp"]) && $_SESSION["temp"] == 'pass') {
+			echo"<script>alert('Password successfully changed!')</script>";
+			$_SESSION["temp"]="";				//reset the temp variable
+		}
+		?>
 		 </div>
 		 
 		 
