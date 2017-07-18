@@ -6,9 +6,11 @@ if (!isset($_SESSION["id"])){
 if(!isset($_POST['search'])){
 	header("Location:account.php");
 }
-$con = mysqli_connect("localhost","root","","payalarmlogin");				//diff file begin
+
+include 'dbh.php';
+
 		$sql = "SELECT id, uid FROM user";
-		$result = mysqli_query($con, $sql);
+		$result = mysqli_query($conn, $sql);
 		
 		if(mysqli_num_rows($result)>0){
 			while($row = mysqli_fetch_assoc($result)){
@@ -18,10 +20,15 @@ $con = mysqli_connect("localhost","root","","payalarmlogin");				//diff file beg
 			}
 		}
 		
-$search_sql="SELECT * FROM customerdata where $name LIKE '%".$_POST['search']."%' OR description LIKE '%".$_POST['search']."%'";
-$search_query=mysql_query($search_sql);
-if(mysql_num_rows($search_query)>0){
-	$search_rs=mysql_fetch_assoc($search_query);
+		$search=$_POST['search'];
+		
+$sql1="SELECT * FROM customerdata"; //where $name LIKE '%$search%' OR description LIKE '%$search%'";
+$query = mysqli_query($con1  ,$sql1);
+if($query){
+	echo"test";
+}
+if(mysqli_num_rows($result)>0){
+	$search_rs=mysqli_fetch_assoc($query);
 }
    
    
@@ -114,7 +121,7 @@ ddsmoothmenu.init({
 			<div class="col no_margin_right" id="Table" style="width:830px">
 			<h2>Search results</h2>
 		<?php
-		
+		echo "<table border=4 style='table-layout:fixed'>
 		<tr style='color:red;background-color:none'>
 		<th style='width:400px'><a href='account.php?msg=name'>Name</a></th>
 		<th style='width:400px'><a href='account.php?msg=amount'>Amount</a></th>

@@ -116,7 +116,7 @@ ddsmoothmenu.init({
 					echo "<div style='color:red'><b>Amount or Contact must only contain numbers</b></div>";
 					}
 				?>
-						<form name="form1" method="POST" action=search.php>
+			<form name="form1" method="POST" action=search1.php>
 			<input name="search" type="text" size="20">
 			<input type="submit" name="Submit" value="Search" />
 			</form>

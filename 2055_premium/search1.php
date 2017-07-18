@@ -1,9 +1,10 @@
-<?php
+	<?php
 session_start();
 if (!isset($_SESSION["id"]))
    {
       header("location: index.php");
    }
+
 ?>
 
 
@@ -11,7 +12,7 @@ if (!isset($_SESSION["id"]))
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>PayAlarm - Change account details</title>
+<title>PayAlarm - Accounts</title>
 <meta name="keywords" content="" />
 <meta name="description" content="" />
 
@@ -64,7 +65,7 @@ ddsmoothmenu.init({
 
 <div id="tooplate_wrapper">
 	<div id="tooplate_header">		
-    	<div id="site_title"><h1><a href="#">PayAlarm</a></h1></div>
+    	<div id="site_title"><h1><a href="redirect.php">PayAlarm</a></h1></div>
 						<!-- NOTICE=IF ACCOUNT IS LOGGED IN, RETURN TO HOME, ELSE RETURN TO INDEX(LOGIN PAGE) -->
 
 		
@@ -87,35 +88,93 @@ ddsmoothmenu.init({
     <div id="tooplate_main_top"></div>
     <div id="tooplate_main">
         
-        <div class="col no_margin_right" style="width:830px">
+        <div class="col no_margin_right" id="AddCustomer" style="width:830px">
 		
 		
-		<h2>Change Account Details</h2>
+		<h2>Search</h2>
+			<a href="account.php">Back to database</a>
+			</div>
+			<div class="cleaner"></div>
+                        
+			
+            <div class="cleaner divider"></div>
+
+			<div class="col no_margin_right" id="Table" style="width:830px">
+		<?php
+		include 'dbh.php';
 		
-		<form action="change.php" method="post">
-			Enter new password<input type="text" name="newPw" placeholder="New Password">
-			<input type="submit" name="pass" value="Change password">
-			<br><br>
+		$con = mysqli_connect("localhost","root","","payalarmlogin");				//diff file begin
+		$sql = "SELECT id, uid FROM user";
+		$result = mysqli_query($con, $sql);
+		
+		if(mysqli_num_rows($result)>0){
+			while($row = mysqli_fetch_assoc($result)){
+				if($row["id"] == $_SESSION['id']){
+					$name = $row["uid"];
+				}
+			}
+		}
+		
+		function filterTable($query){
+			$con1 = mysqli_connect("localhost", "root", "", "customerdata");
+			$filter_Result=mysqli_query($con1,$query);
+			return $filter_Result;
+		}
+		$search = $_POST['search'];
+		$query= "SELECT * FROM $name WHERE CONCAT(`name`, `amount`, `email`, `contact`, `due_date`, `remarks`) LIKE '%".$search."%'";
+		$search_result = filterTable($query);
+		
 		
 
-			<br><br>
-			
-			
-		</form>
-		<?php
-			$hid = $_SESSION['id'];
-			echo 	"<form action=change.php method='post'>";
-			echo	"<p style='color:red'><b>To delete your account and all it's data, click the button below</b></p><br>";
-			echo	"<input type=submit name=delete value=Delete account onclick=\"return confirm('Are you sure you wish to delete your account?')\">";
-			echo	"<input type=hidden name=hid value='$hid'>";
-			echo 	"</form>";
+		
+		echo "<style>";
+		
+		echo ".data {word-wrap:break-word; width:108px; }";
+		echo "table {table-layout:fixed; width:850px}";
+		echo ".rem {word-wrap:break-word; width:150px;  }";
+		echo ".edit{ width:20px;  }";
+		echo "</style>";
+
+		echo "<table border=4 style='table-layout:fixed'>
+		
+		<tr style='color:red;background-color:none'>
+		<th class='data' ><a href='account.php?msg=name'>Name</a></th>
+		<th class='data'><a href='account.php?msg=amount'>Amount</a></th>
+		<th class='data'><a href='account.php?msg=email'>Email</a></th>
+		<th class='data'><a href='account.php?msg=contact'>Contact</a></th>
+		<th class='data'><a href='account.php?msg=due_date'>Due Date</a></th>
+		<th class='rem'>Remarks</th>
+		</tr>";
+		
+		
+		
+		while($record=mysqli_fetch_array($search_result)){
+			echo "<form action=moddata.php method=POST>";
+			echo "<tr style:'height:auto'>";
+			echo "<td class='data' style='Font-weight:bold'>" . $record['name'] . "</td>";
+			echo "<td class='data'>" . $record['amount'] . "</td>";
+			echo "<td class='data'>" . $record['email'] . "</td>";
+			echo "<td class='data'>" . $record['contact'] . "</td>";
+			echo "<td class='data'>" . $record['due_date'] . "</td>";
+			echo "<td class='rem'>" . $record['remarks'] . "</td>";
+			echo "<input type=hidden name=hidden value=" . $record['name'] . ">";
+			echo "<td class'='edit';>" . "<input type=submit name=delete value=delete>" . "</td>";
+			echo "</form>";
+			echo "<form action=edit.php method=POST>";
+			echo "<input type=hidden name=hid value=" . $record['id'] . ">";
+			echo "<td class='edit'>" . "<input type=submit name=edit value=edit>" . "</td>";
+			echo "</tr>";
+			echo "</form>";
+		}
+		echo "</table>";
 		
 		?>
-
+		<br><br><br>
 		
+		<p style="text-align:center"> <a href="account.php#site_title" ">Click Here to go to the top of the page!</a></p>
 		</div>
 		
-		
+	
 		
 		<div class="cleaner divider"></div>
 
