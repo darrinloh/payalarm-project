@@ -72,17 +72,19 @@
 		$page="account.php";
 		}
 		elseif($error==1){
-			$page="account.php?msg=wrong";
+			$_SESSION["temp"]="wrong";
 		}
 		elseif($error==2){
-			$page="account.php?msg=wrong1";
+			$_SESSION["temp"]="wrong1";
 		}
 		elseif($error==3){
-			$page="account.php?msg=wrong2";
+			$_SESSION["temp"]="wrong2";
 		}
 		elseif($error==4){
-				$page="account.php?msg=wrong3";
-			}
+			$_SESSION["temp"]="wrong3";
+		}
+		$page="account.php";
+
 	}
 	
 	
@@ -164,21 +166,21 @@
 		elseif($error!=0){
 			$_SESSION['POST'] = $hid;
 			if($error==1){
-				$page="edit.php?msg=wrong";
+				$_SESSION["temp"]="wrong";
 			}
 			elseif($error==2){
-				$page="edit.php?msg=wrong1";
+				$_SESSION["temp"]="wrong1";
 			}
 			elseif($error==3){
-				$page="edit.php?msg=wrong2";
+				$_SESSION["temp"]="wrong2";
 			}
 			elseif($error==4){
-				$page="edit.php?msg=wrong3";
+				$_SESSION["temp"]="wrong3";
 			}
-			
+			$page="edit.php";
 		}
 	}
 	
-	
+	include 'UpdateDueDate.php';
 	//echo"$error";
 	header("Location: $page");

@@ -88,70 +88,68 @@ ddsmoothmenu.init({
 		<h2>Edit</h2>
 		
 		<?php
-		$con = mysqli_connect("localhost","root","","payalarmlogin");
-		$sql = "SELECT id, uid FROM user";
-		$result = mysqli_query($con, $sql);
+		include 'dbh.php';
 		
-		if(mysqli_num_rows($result)>0){
-			while($row = mysqli_fetch_assoc($result)){
-				if($row["id"] == $_SESSION['id']){
-					$name = $row["uid"];
-				}
-			}
+		if(!isset($_POST['hid']) && !isset($_SESSION['POST'])){
+			echo "<h4>You need to click edit from a specific customer at the Account page! Please proceed there first.</h3>";
 		}
-		if(!empty($_SESSION['POST'])){
-			$hid= $_SESSION['POST'];
-			$_SESSION['POST'] = "";
-			}
 		else{
+			if(isset($_SESSION['POST'])){
+				$hid=$_SESSION['POST'];
+				unset($_SESSION['POST']);
+			}
+			else{
 			$hid= $_POST['hid'];
-		}
-		$con1 = mysqli_connect("localhost","root","", "customerdata");
-		$sql1= "SELECT * FROM $name";
-		$myData = mysqli_query($con1, $sql1);
-			
-		if(mysqli_num_rows($myData)>0){
-			while($row = mysqli_fetch_assoc($myData)){
-				if($row["id"] == $hid){
-					$name = $row["name"];
-					$amount = $row["amount"];
-					$email = $row["email"];
-					$contact = $row["contact"];
-					$due_date = $row["due_date"];
-					$remarks = $row["remarks"];
+			}
+			$sql1= "SELECT * FROM $_SESSION[uid]";
+			$myData = mysqli_query($con1, $sql1);
+				
+			if(mysqli_num_rows($myData)>0){
+				while($row = mysqli_fetch_assoc($myData)){
+					if($row["id"] == $hid){
+						$name = $row["name"];
+						$amount = $row["amount"];
+						$email = $row["email"];
+						$contact = $row["contact"];
+						$due_date = $row["due_date"];
+						$remarks = $row["remarks"];
+					}
 				}
 			}
+		
+		
+		
+			echo "<form action=moddata.php method=POST id=edit>";
+			echo	"<input type=text name=name placeholder='Name' value='$name'>";
+			echo	"<input type=text name=amount placeholder='Amount(Numbers only)' value='$amount'>";
+			echo	"<input type=text name=email placeholder='Email' value='$email'>";
+			echo	"<input type=text name=contact placeholder='Contact(Numbers only)' value='$contact'>";
+			echo	"<input type=text name=due_date placeholder='Due Date' value='$due_date'>";
+			echo	"<textarea style='font-family:arial' rows='6' cols='50' name='remarks' form='edit' placeholder='Remarks(max 250 characters)' >$remarks</textarea>";
+			echo	"<input type=hidden name=hid value='$hid'>";
+			echo	"<br>";
+			echo	"<input type=submit name=save_changes value='Save Changes'>";
+			echo "</form>";
 		}
-		
-		
-		
-		echo "<form action=moddata.php method=POST id=edit>";
-		echo	"<input type=text name=name placeholder='Name' value='$name'>";
-		echo	"<input type=text name=amount placeholder='Amount(Numbers only)' value='$amount'>";
-		echo	"<input type=text name=email placeholder='Email' value='$email'>";
-		echo	"<input type=text name=contact placeholder='Contact(Numbers only)' value='$contact'>";
-		echo	"<input type=text name=due_date placeholder='Due Date' value='$due_date'>";
-		echo	"<textarea style='font-family:arial' rows='6' cols='50' name='remarks' form='edit' placeholder='Remarks(max 250 characters)' >$remarks</textarea>";
-		echo	"<input type=hidden name=hid value='$hid'>";
-		echo	"<br>";
-		echo	"<input type=submit name=save_changes value='Save Changes'>";
-		echo "</form>";
 	
-		if (isset($_GET["msg"]) && $_GET["msg"] == 'wrong') {
+		if (isset($_SESSION["temp"]) && $_SESSION["temp"] == 'wrong') {
 			echo "<div style='color:red'><b>Incorrect date format</b></div>";
 		}
-		elseif(isset($_GET["msg"]) && $_GET["msg"] == 'wrong1'){
+		elseif(isset($_SESSION["temp"]) && $_SESSION["temp"] == 'wrong1'){
 			echo "<div style='color:red'><b>Incorrect date</b></div>";
 		}
-		elseif(isset($_GET["msg"]) && $_GET["msg"] == 'wrong2'){
+		elseif(isset($_SESSION["temp"]) && $_SESSION["temp"] == 'wrong2'){
 			echo "<div style='color:red'><b>Name already taken(Try to add identifiers to the back of the name eg. Michael and Michael 2</b></div>";
 		}
-		elseif(isset($_GET["msg"]) && $_GET["msg"] == 'wrong3'){
-				echo "<div style='color:red'><b>Amount or Contact must only contain numbers</b></div>";
+		elseif(isset($_SESSION["temp"]) && $_SESSION["temp"] == 'wrong3'){
+			echo "<div style='color:red'><b>Amount or Contact must only contain numbers</b></div>";
+		}
+		if (isset($_SESSION["temp"])){
+			unset($_SESSION["temp"]);
 		}
 	
 		
-		mysqli_close($con);
+		unset($hid);
 		?>
 		
 		</div>

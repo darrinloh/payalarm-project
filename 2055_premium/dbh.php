@@ -9,6 +9,6 @@ if (!$conn || !$con1){
 	die("Connection failed: ".mysqli_connect_error()); //remove when uploading to website
 }
 
-function
+
 
 ?>

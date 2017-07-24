@@ -98,23 +98,28 @@ ddsmoothmenu.init({
 				<input type="text" name="email" placeholder="Email">
 				<input type="text" name="contact" placeholder="Contact(Numbers only)">
 				<input type="text" name="due_date" placeholder="Due Date(dd/mm/yyyy)">
-				<textarea style="font-family:arial" rows="6" cols="50" name="remarks" form="mod" placeholder="Remarks(max 250 characters)"></textarea>
+				<textarea style="font-family:arial" rows="6" cols="50" name="remarks" form="mod" placeholder="Remarks(max 250 characters)(NOTE: Advised to put currency of amount at the beginning)"></textarea>
 				
 				<input type="submit" name="add" value="Add">
 			</form>
 			<?php
-				if (isset($_GET["msg"]) && $_GET["msg"] == 'wrong') {
+				if (isset($_SESSION["temp"]) && $_SESSION["temp"] == 'wrong') {
 					echo "<div style='color:red'><b>Incorrect date format</b></div>";
-					}
-					elseif(isset($_GET["msg"]) && $_GET["msg"] == 'wrong1'){
+				}
+				elseif(isset($_SESSION["temp"]) && $_SESSION["temp"] == 'wrong1'){
 					echo "<div style='color:red'><b>Incorrect date</b></div>";
-					}
-					elseif(isset($_GET["msg"]) && $_GET["msg"] == 'wrong2'){
+				}
+				elseif(isset($_SESSION["temp"]) && $_SESSION["temp"] == 'wrong2'){
 					echo "<div style='color:red'><b>Name already taken(Try to add identifiers to the back of the name eg. Michael and Michael 2</b></div>";
-					}
-					elseif(isset($_GET["msg"]) && $_GET["msg"] == 'wrong3'){
-					echo "<div style='color:red'><b>Amount or Contact must only contain numbers</b></div>";
-					}
+				}
+				elseif(isset($_SESSION["temp"]) && $_SESSION["temp"] == 'wrong3'){
+					echo "<div style='color:red'><b>Amount or Contact must only contain numbers</b></div>"
+				}
+				if (isset($_SESSION["temp"])){
+					unset($_SESSION["temp"]);
+				}
+				
+					
 				?>
 			<form name="form1" method="POST" action=search1.php>
 			<input name="search" type="text" size="20">
@@ -128,45 +133,39 @@ ddsmoothmenu.init({
 
 			<div class="col no_margin_right" id="Table" style="width:830px">
 		<?php
-		$con = mysqli_connect("localhost","root","","payalarmlogin");				//diff file begin
-		$sql = "SELECT id, uid FROM user";
-		$result = mysqli_query($con, $sql);
-		
-		if(mysqli_num_rows($result)>0){
-			while($row = mysqli_fetch_assoc($result)){
-				if($row["id"] == $_SESSION['id']){
-					$name = $row["uid"];
-				}
-			}
-		}
-		$con1 = mysql_connect("localhost","root","");
-		mysql_select_db("customerdata",$con1);
-		$sql= "SELECT * FROM $name";
+			include 'dbh.php';
+			
+
 		if (isset($_GET["msg"])){
 			if ($_GET['msg'] == 'name'){	
 			
-				$sql = "SELECT * FROM $name ORDER BY name";
+				$sql = "SELECT * FROM $_SESSION[uid] ORDER BY name";
 			}
 			
 			elseif ($_GET['msg'] == 'amount'){
-				$sql= "SELECT * FROM $name ORDER BY amount";
+				$sql= "SELECT * FROM $_SESSION[uid] ORDER BY amount";
 			}
 			
 			elseif ($_GET['msg'] == 'email'){
-				$sql= "SELECT * FROM $name ORDER BY email";
+				$sql= "SELECT * FROM $_SESSION[uid] ORDER BY email";
 			}
 			elseif ($_GET['msg'] == 'contact'){
-				$sql= "SELECT * FROM $name ORDER BY contact";
+				$sql= "SELECT * FROM $_SESSION[uid] ORDER BY contact";
 			}
 			elseif ($_GET['msg'] == 'due_date'){
-				$sql= "SELECT * FROM $name ORDER BY due_date";
+				$sql= "SELECT * FROM $_SESSION[uid] ORDER BY year,mon,day";
 			}
-			$myData = mysql_query($sql, $con1);	
+			elseif ($_GET['msg'] == 'remarks'){
+				$sql= "SELECT * FROM $_SESSION[uid] ORDER BY remarks";
+			}
+			
+	
 		}
 		else{
-			$sql = "SELECT * FROM $name ORDER BY name";
-			$myData = mysql_query($sql, $con1);	
+			$sql = "SELECT * FROM $_SESSION[uid] ORDER BY name";
+			
 		}
+		$myData = mysqli_query($con1, $sql);	
 		
 		echo "<style>";
 		
@@ -184,12 +183,12 @@ ddsmoothmenu.init({
 		<th class='data'><a href='account.php?msg=email'>Email</a></th>
 		<th class='data'><a href='account.php?msg=contact'>Contact</a></th>
 		<th class='data'><a href='account.php?msg=due_date'>Due Date</a></th>
-		<th class='rem'>Remarks</th>
+		<th class='rem'><a href='account.php?msg=remarks'>Remarks</a></th>
 		</tr>";
 		
 		
-		
-		while($record=mysql_fetch_array($myData)){
+		if($myData)
+		while($record=mysqli_fetch_array($myData)){
 			echo "<form action=moddata.php method=POST>";
 			echo "<tr style:'height:auto'>";
 			echo "<td class='data' style='Font-weight:bold'>" . $record['name'] . "</td>";
@@ -209,7 +208,7 @@ ddsmoothmenu.init({
 		}
 		echo "</table>";
 		
-		mysqli_close($con);
+	
 		?>
 		<br><br><br>
 		

@@ -55,7 +55,10 @@ $page ="";
 		email VARCHAR(50) NOT NULL,
 		contact INT(20) UNSIGNED,
 		due_date VARCHAR(15),
-		remarks VARCHAR(200)
+		remarks VARCHAR(200),
+		day INT(2) UNSIGNED,
+		mon INT(2) UNSIGNED,
+		year INT(10) UNSIGNED
 		)";
 		$res1=mysql_query($createTable,$con1);
 		if($res1){
