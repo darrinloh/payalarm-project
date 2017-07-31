@@ -121,6 +121,8 @@ ddsmoothmenu.init({
 				
 					
 				?>
+				
+			<b>Search for certain customers</b><br>
 			<form name="form1" method="POST" action=search1.php>
 			<input name="search" type="text" size="20">
 			<input type="submit" name="Submit" value="Search" />
@@ -171,13 +173,12 @@ ddsmoothmenu.init({
 		
 		echo ".data {word-wrap:break-word; width:108px; }";
 		echo ".send_reminder {width:65px;}";
-		echo ".send {width:65px; border:none;}";
+
 		echo ".date {width:80px;}";
 		echo ".contact {width:75px}";
 		echo "table {table-layout:fixed; width:850px}";
 		echo ".rem {word-wrap:break-word; width:140px;}";
-		echo ".delete {width:35px; border:3px;}";
-		echo ".edit {width:20px; border:none;}";
+
 		echo "</style>";
 
 		echo "<table border=4 style='table-layout:fixed'>
@@ -204,12 +205,12 @@ ddsmoothmenu.init({
 			echo "<td class='date'>" . $record['due_date'] . "</td>";
 			echo "<td class='rem'>" . $record['remarks'] . "</td>";
 			echo "<input type=hidden name=hidden value=" . $record['name'] . ">";
-			echo "<td class'='send'>" . "<input type=submit name=send value=send>" . "</td>";
-			echo "<td class'='delete'>" . "<input type=submit name=delete value=delete>" . "</td>";
+			echo "<td class'='data'>" . "<input type=submit name=send value=send>" . "</td>";
+			echo "<td class'='data'>" . "<input type=submit name=delete value=delete>" . "</td>";
 			echo "</form>";
 			echo "<form action=edit.php method=POST>";
 			echo "<input type=hidden name=hid value=" . $record['id'] . ">";
-			echo "<td class='edit'>" . "<input type=submit name=edit value=edit>" . "</td>";
+			echo "<td class='data	'>" . "<input type=submit name=edit value=edit>" . "</td>";
 			echo "</tr>";
 			echo "</form>";
 		}

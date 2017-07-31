@@ -84,7 +84,7 @@ ddsmoothmenu.init({
 		 <p> Welcome to your very own PayAlarm account! We hope you enjoy our services!</p>
 		 <h3><u>Manoeuvring tips</u></h3>
 		 <p> To see your entire database, click the <strong>Account</strong> link in the toolbar above.</p>
-		 <p>To Change your account details(password, email etc), hover over the Account link and select <strong>change details</strong>.</p>
+		 <p>To Change your account details(password etc), hover over the Account link and select <strong>change details</strong>.</p>
 		<?php 
 		 if (isset($_SESSION["temp"]) && $_SESSION["temp"] == 'pass') {
 			echo"<script>alert('Password successfully changed!')</script>";
@@ -97,18 +97,40 @@ ddsmoothmenu.init({
 		<div class="cleaner"></div> 
 		<div class="cleaner divider"></div> 
 		
-        <div class="col two-third">
+        <div class="col two-third" id="notifications">
         	<div class="padding_right">
                 <h2>Notifications and Updates</h2>
+				Choose the minimum number of days to the due date for a customer's data to be displayed at the home page. The default option is "Due Today"
+				<form action="refresh.php" method="post">
+					<select name="days">
+						<option value="0" <?php if($_SESSION['ref'] == "0"){ echo "selected"; } ?>>Due today</option>
+						<option value="1" <?php if($_SESSION['ref'] == "1"){ echo "selected"; } ?>>1 day</option>
+						<option value="7" <?php if($_SESSION['ref'] == "2"){ echo "selected"; } ?>>7 days</option>
+						<option value="30" <?php if($_SESSION['ref'] == "3"){ echo "selected"; } ?>>30 days</option>
+					  </select> 
+					<input type="submit" name="Submit" value="Refresh">
+				</form>
+				<br>
+				<?php
+				echo "<table border=2 style='table-layout:fixed; width:500px'>
+					<tr style='color:blue;background-color:none'>
+						<th class='data' >Name</th>
+						<th class='data'>Amount</th>
+						<th class='data'>Email</th>
+						<th class='data'>Contact</th>
+						<th class='data'>Due Date</th>
+						<th class='rem'>Remarks</th>
+					</tr>";
+					include 'notifications.php';
+				echo "</table>";
+
 				
-				<p> ***insert notifications and updates script pertaining to database here***</p>
-			
-	
+
+				?>
 				
                 </div>
 				<div class="cleaner"></div>
                         
-            <div class="cleaner divider"></div>
            
             
         </div>
@@ -117,15 +139,46 @@ ddsmoothmenu.init({
             <h3>Services</h3>
             <ul class="tooplate_list">
             	<li><a href="account.php#AddCustomer">Add new customer detail entry</a></li>
-                <li><a href="account.php#Table">View Customer Database Table</a></li>
+
+				<li><a href="home.php#overdue">Skip to overdue payments</a></li>
                 </ul>
             
-            <div class="cleaner divider"></div>
+            <div class="cleaner divider"></div>	
             
             
         </div>
-        
-        <div class="cleaner"></div>
+       <div class="cleaner divider"></div>
+       <div class="cleaner"></div>
+	   
+	   <div class="col two-third" id="overdue">
+        	<div class="padding_right">
+                <h2 style="color:red" ><strong>Overdue Payments</strong></h2>
+
+				<br>
+				<?php
+				echo "<table border=2 style='table-layout:fixed; width:500px'>
+					<tr style='color:red;background-color:none'>
+						<th class='data' >Name</th>
+						<th class='data'>Amount</th>
+						<th class='data'>Email</th>
+						<th class='data'>Contact</th>
+						<th class='data'>Due Date</th>
+						<th class='rem'>Remarks</th>
+					</tr>";
+					include 'overdue.php';
+				echo "</table>";
+
+				
+
+				?>
+				
+				
+                </div>
+		</div>
+		  <div class="cleaner"></div>
+		    <div class="cleaner divider"></div>
+			
+			<a href="home.php#site_title">Back to the top of the page!</a>
     </div> <!-- END of main -->
     <div id="tooplate_footer">
  

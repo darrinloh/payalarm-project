@@ -16,6 +16,7 @@ if(!$row=mysqli_fetch_assoc($result)){
 else{
 	$_SESSION['id']=$row['id'];
 	$_SESSION['uid']=$row['uid'];
+	$_SESSION['ref']=0;
 	header("Location:home.php");
 }
 
