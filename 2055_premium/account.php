@@ -170,20 +170,26 @@ ddsmoothmenu.init({
 		echo "<style>";
 		
 		echo ".data {word-wrap:break-word; width:108px; }";
+		echo ".send_reminder {width:65px;}";
+		echo ".send {width:65px; border:none;}";
+		echo ".date {width:80px;}";
+		echo ".contact {width:75px}";
 		echo "table {table-layout:fixed; width:850px}";
-		echo ".rem {word-wrap:break-word; width:150px;  }";
-		echo ".edit{ width:20px;  }";
+		echo ".rem {word-wrap:break-word; width:140px;}";
+		echo ".delete {width:35px; border:3px;}";
+		echo ".edit {width:20px; border:none;}";
 		echo "</style>";
 
 		echo "<table border=4 style='table-layout:fixed'>
 		
-		<tr style='color:red;background-color:none'>
+		<tr style='color:blue;background-color:none'>
 		<th class='data' ><a href='account.php?msg=name'>Name</a></th>
 		<th class='data'><a href='account.php?msg=amount'>Amount</a></th>
 		<th class='data'><a href='account.php?msg=email'>Email</a></th>
-		<th class='data'><a href='account.php?msg=contact'>Contact</a></th>
-		<th class='data'><a href='account.php?msg=due_date'>Due Date</a></th>
+		<th class='contact'><a href='account.php?msg=contact'>Contact</a></th>
+		<th class='date'><a href='account.php?msg=due_date'>Due Date</a></th>
 		<th class='rem'><a href='account.php?msg=remarks'>Remarks</a></th>
+		<th class='send_reminder'>Send </br>Reminder</th>
 		</tr>";
 		
 		
@@ -194,11 +200,12 @@ ddsmoothmenu.init({
 			echo "<td class='data' style='Font-weight:bold'>" . $record['name'] . "</td>";
 			echo "<td class='data'>" . $record['amount'] . "</td>";
 			echo "<td class='data'>" . $record['email'] . "</td>";
-			echo "<td class='data'>" . $record['contact'] . "</td>";
-			echo "<td class='data'>" . $record['due_date'] . "</td>";
+			echo "<td class='contact'>" . $record['contact'] . "</td>";
+			echo "<td class='date'>" . $record['due_date'] . "</td>";
 			echo "<td class='rem'>" . $record['remarks'] . "</td>";
 			echo "<input type=hidden name=hidden value=" . $record['name'] . ">";
-			echo "<td class'='edit';>" . "<input type=submit name=delete value=delete>" . "</td>";
+			echo "<td class'='send'>" . "<input type=submit name=send value=send>" . "</td>";
+			echo "<td class'='delete'>" . "<input type=submit name=delete value=delete>" . "</td>";
 			echo "</form>";
 			echo "<form action=edit.php method=POST>";
 			echo "<input type=hidden name=hid value=" . $record['id'] . ">";

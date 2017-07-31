@@ -181,6 +181,45 @@
 		}
 	}
 	
+	
+	
+	elseif(isset($_POST['send'])){
+	    $username = "darrin";
+		$password = "dlkl1213";
+		$from = "PayAlarm";
+		$baseurl ="https://mx.fortdigital.net";
+ 
+		$message = urlencode("Payment is overdue.");
+		$to = $_POST['hidden_number'];
+ 
+		// auth call
+		$url = "$baseurl/http/send-message?username=$username&password=$password&from=$from";
+ 
+		// do auth call
+		$ret = file($url);
+ 
+		// explode our response. return string is on first line of the data returned
+		$sess = explode(":",$ret[0]);
+		if($sess[0] == "OK"){
+ 
+        $sess_id = trim($sess[1]); // remove any whitespace
+        $url = "$baseurl/http/send-message?session_id=$sess_id&to=$to&message=$message";
+ 
+        // do sendmsg call
+        $ret = file($url);
+        $send = explode(":",$ret[0]);
+ 
+        if ($send[0] == "ID") {
+            echo "successnmessage ID: ". $send[1];
+        } else {
+            echo "send message failed";
+        }
+    } else {
+        echo "Authentication failure: ". $ret[0];
+    }
+		//$page="account.php";
+	}
+	
 	include 'UpdateDueDate.php';
 	//echo"$error";
 	header("Location: $page");
