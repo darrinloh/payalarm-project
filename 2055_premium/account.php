@@ -113,7 +113,7 @@ ddsmoothmenu.init({
 					echo "<div style='color:red'><b>Name already taken(Try to add identifiers to the back of the name eg. Michael and Michael 2</b></div>";
 				}
 				elseif(isset($_SESSION["temp"]) && $_SESSION["temp"] == 'wrong3'){
-					echo "<div style='color:red'><b>Amount or Contact must only contain numbers</b></div>"
+					echo "<div style='color:red'><b>Amount or Contact must only contain numbers</b></div>";
 				}
 				if (isset($_SESSION["temp"])){
 					unset($_SESSION["temp"]);
