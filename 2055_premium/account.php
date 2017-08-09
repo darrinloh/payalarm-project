@@ -76,7 +76,7 @@ ddsmoothmenu.init({
                         <li><a href="changeDetails.php" class="last">Change details</a></li>
                         <li><span class="bottom"></span></li>
                    </ul>
-				   <li><a href="contact.php">About Us</a></li>
+				 
 				   <li><a href="faq.html" target="_blank">FAQ</a></li>
 				   <li><a href="logout.php">Log Out</a></li>
               	</li>
@@ -122,8 +122,8 @@ ddsmoothmenu.init({
 					
 				?>
 				
-			<b>Search for certain customers</b><br>
-			<form name="form1" method="POST" action=search1.php>
+			<b>Search Customer Database</b><br>
+			<form name="form1" method="POST" action=search.php>
 			<input name="search" type="text" size="20">
 			<input type="submit" name="Submit" value="Search" />
 			</form>
@@ -220,13 +220,14 @@ ddsmoothmenu.init({
 		?>
 		<br><br><br>
 		
-		<p style="text-align:center"> <a href="account.php#site_title" ">Click Here to go to the top of the page!</a></p>
+		
 		</div>
 		
 	
 		
 		<div class="cleaner divider"></div>
 
+		<p style="text-align:center"> <a href="account.php#site_title" >Click Here to go to the top of the page!</a></p>
         
         <div class="cleaner"></div>
     </div> <!-- END of main -->

@@ -1,37 +1,10 @@
-<?php
+	<?php
 session_start();
-if (!isset($_SESSION["id"])){
-	header("location: index.php");
-}
-if(!isset($_POST['search'])){
-	header("Location:account.php");
-}
+if (!isset($_SESSION["id"]))
+   {
+      header("location: index.php");
+   }
 
-include 'dbh.php';
-
-		$sql = "SELECT id, uid FROM user";
-		$result = mysqli_query($conn, $sql);
-		
-		if(mysqli_num_rows($result)>0){
-			while($row = mysqli_fetch_assoc($result)){
-				if($row["id"] == $_SESSION['id']){
-					$name = $row["uid"];
-				}
-			}
-		}
-		
-		$search=$_POST['search'];
-		
-$sql1="SELECT * FROM customerdata"; //where $name LIKE '%$search%' OR description LIKE '%$search%'";
-$query = mysqli_query($con1  ,$sql1);
-if($query){
-	echo"test";
-}
-if(mysqli_num_rows($result)>0){
-	$search_rs=mysqli_fetch_assoc($query);
-}
-   
-   
 ?>
 
 
@@ -92,7 +65,7 @@ ddsmoothmenu.init({
 
 <div id="tooplate_wrapper">
 	<div id="tooplate_header">		
-    	<div id="site_title"><h1><a href="#">PayAlarm</a></h1></div>
+    	<div id="site_title"><h1><a href="redirect.php">PayAlarm</a></h1></div>
 						<!-- NOTICE=IF ACCOUNT IS LOGGED IN, RETURN TO HOME, ELSE RETURN TO INDEX(LOGIN PAGE) -->
 
 		
@@ -104,7 +77,7 @@ ddsmoothmenu.init({
                         <li><a href="changeDetails.php" class="last">Change details</a></li>
                         <li><span class="bottom"></span></li>
                    </ul>
-				   <li><a href="contact.php">About Us</a></li>
+				   
 				   <li><a href="faq.html" target="_blank">FAQ</a></li>
 				   <li><a href="logout.php">Log Out</a></li>
               	</li>
@@ -115,55 +88,99 @@ ddsmoothmenu.init({
     <div id="tooplate_main_top"></div>
     <div id="tooplate_main">
         
-        
-	
+        <div class="col no_margin_right" id="AddCustomer" style="width:830px">
+		
+		
+		<h2>Search</h2>
+			<a href="account.php">Back to database</a>
+			</div>
+			<div class="cleaner"></div>
+                        
+			
+            <div class="cleaner divider"></div>
 
 			<div class="col no_margin_right" id="Table" style="width:830px">
-			<h2>Search results</h2>
 		<?php
-		echo "<table border=4 style='table-layout:fixed'>
-		<tr style='color:red;background-color:none'>
-		<th style='width:400px'><a href='account.php?msg=name'>Name</a></th>
-		<th style='width:400px'><a href='account.php?msg=amount'>Amount</a></th>
-		<th style='width:400px'><a href='account.php?msg=email'>Email</a></th>
-		<th style='width:400px'><a href='account.php?msg=contact'>Contact</a></th>
-		<th style='width:400px'><a href='account.php?msg=due_date'>Due Date</a></th>
-		<th style='width:400px'>Remarks</th>
-		</tr>";
+		include 'dbh.php';
+		
+		$con = mysqli_connect("localhost","root","","payalarmlogin");				//diff file begin
+		$sql = "SELECT id, uid FROM user";
+		$result = mysqli_query($con, $sql);
+		
+		if(mysqli_num_rows($result)>0){
+			while($row = mysqli_fetch_assoc($result)){
+				if($row["id"] == $_SESSION['id']){
+					$name = $row["uid"];
+				}
+			}
+		}
+		
+		function filterTable($query){
+			$con1 = mysqli_connect("localhost", "root", "", "customerdata");
+			$filter_Result=mysqli_query($con1,$query);
+			return $filter_Result;
+		}
+		$search = $_POST['search'];
+		$query= "SELECT * FROM $name WHERE CONCAT(`name`, `amount`, `email`, `contact`, `due_date`, `remarks`) LIKE '%".$search."%'";
+		$search_result = filterTable($query);
+		
+		
 		
 
-		if(mysqli_num_rows($search_query>0)){
-		while($record=mysql_fetch_assoc($search_query)){
+		echo "<style>";
+		
+		echo ".data {word-wrap:break-word; width:108px; }";
+		echo ".send_reminder {width:65px;}";
+
+		echo ".date {width:80px;}";
+		echo ".contact {width:75px}";
+		echo "table {table-layout:fixed; width:850px}";
+		echo ".rem {word-wrap:break-word; width:140px;}";
+
+		echo "</style>";
+
+		echo "<table border=4 style='table-layout:fixed'>
+		
+		<tr style='color:blue;background-color:none'>
+		<th class='data' >Name</th>
+		<th class='data'>Amount</th>
+		<th class='data'>Email</th>
+		<th class='contact'>Contact</th>
+		<th class='date'>Due Date</th>
+		<th class='rem'>Remarks</th>
+		<th class='send_reminder'>Send </br>Reminder</th>
+		</tr>";
+		
+		
+		
+		while($record=mysqli_fetch_array($search_result)){
 			echo "<form action=moddata.php method=POST>";
-			echo "<tr>";
-			echo "<td style='Font-weight:bold'>" . $record['name'] . "</td>";
-			echo "<td>" . $record['amount'] . "</td>";
-			echo "<td>" . $record['email'] . "</td>";
-			echo "<td>" . $record['contact'] . "</td>";
-			echo "<td>" . $record['due_date'] . "</td>";
-			echo "<td>" . $record['remarks'] . "</td>";
-			echo "<td>" . "<input type=hidden name=hidden value=" . $record['name'] . "></td>";
-			echo "<td>" . "<input type=submit name=delete value=delete>" . "</td>";
+			echo "<tr style:'height:auto'>";
+			echo "<td class='data' style='Font-weight:bold'>" . $record['name'] . "</td>";
+			echo "<td class='data'>" . $record['amount'] . "</td>";
+			echo "<td class='data'>" . $record['email'] . "</td>";
+			echo "<td class='contact'>" . $record['contact'] . "</td>";
+			echo "<td class='date'>" . $record['due_date'] . "</td>";
+			echo "<td class='rem'>" . $record['remarks'] . "</td>";
+			echo "<input type=hidden name=hidden value=" . $record['name'] . ">";
+			echo "<td class'='data'>" . "<input type=submit name=send value=send>" . "</td>";
+			echo "<td class'='data'>" . "<input type=submit name=delete value=delete>" . "</td>";
 			echo "</form>";
 			echo "<form action=edit.php method=POST>";
-			echo "<td>" . "<input type=hidden name=hid value=" . $record['id'] . "></td>";
-			echo "<td>" . "<input type=submit name=edit value=edit>" . "</td>";
+			echo "<input type=hidden name=hid value=" . $record['id'] . ">";
+			echo "<td class='data	'>" . "<input type=submit name=edit value=edit>" . "</td>";
 			echo "</tr>";
 			echo "</form>";
 		}
 		echo "</table>";
-		}
-		else{
-			echo "No results found";
-		}
-		mysqli_close($con);
+		
 		?>
 		<br><br><br>
 		
-		<p style="text-align:center"> <a href="account.php#site_title" >Click Here to go to the top of the page!</a></p>
+		<p style="text-align:center"> <a href="account.php#site_title" ">Click Here to go to the top of the page!</a></p>
 		</div>
 		
-	  <div class="cleaner"></div>
+	
 		
 		<div class="cleaner divider"></div>
 

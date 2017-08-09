@@ -69,7 +69,7 @@ ddsmoothmenu.init({
                         <li><a href="changeDetails.php" class="last">Change details</a></li>
                         <li><span class="bottom"></span></li>
                    </ul>
-				   <li><a href="contact.php">About Us</a></li>
+				 
 				   <li><a href="faq.html" target="_blank">FAQ</a></li>
 				   <li><a href="logout.php">Log Out</a></li>
               	</li>
@@ -178,7 +178,7 @@ ddsmoothmenu.init({
 		  <div class="cleaner"></div>
 		    <div class="cleaner divider"></div>
 			
-			<a href="home.php#site_title">Back to the top of the page!</a>
+			<p style="text-align:center"> <a href="home.php#site_title" >Click Here to go to the top of the page!</a></p>
     </div> <!-- END of main -->
     <div id="tooplate_footer">
  

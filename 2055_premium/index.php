@@ -119,8 +119,40 @@ ddsmoothmenu.init({
 		
 		</div>
 		
+		 <div class="cleaner divider"></div>
 		 <div class="cleaner"></div>
-   
+		 
+		 <h2>About Us</h2>
+        <div class="half float_l" style="width:440px">
+            <h4><strong>Creators</strong></h4>
+			<p><b>Darrin Loh</b>: <br>Occupation: NUS undergraduate Computer Engineering(Hons)) Year 2
+			<br>City: Singapore
+			<br>
+			<br>
+			<b>Samuel Loh</b>:
+			<br>Occupation: NUS undergraduate Computer Science(Hons)) Year 2
+			<br>City: Singapore</p>
+			<br>
+			
+			
+
+
+            </div>
+        <div class="half float_r">
+            <div class="cleaner h40"></div>
+            <h4><strong>Contact Us!</strong></h4>
+            
+            <strong>Phone:</strong> 12345678<br />
+            <strong>Email:</strong> <a href="mailto:info@company.com">info@company.com</a> <br />
+            
+        </div>
+		 
+		 		 <div class="cleaner"></div>
+				   <div class="col center" style="width:800px">
+				   <p style="text-align:center; margin-left:40px"><strong>      Please send us any comments you have on our web app to help us help you have a better experience thank you!:)</strong></p>
+					</div>
+					
+					<div class="cleaner"></div>
     </div> <!-- END of main -->
     <div id="tooplate_footer">
  
