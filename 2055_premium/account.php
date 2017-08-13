@@ -205,6 +205,7 @@ ddsmoothmenu.init({
 			echo "<td class='date'>" . $record['due_date'] . "</td>";
 			echo "<td class='rem'>" . $record['remarks'] . "</td>";
 			echo "<input type=hidden name=hidden value=" . $record['name'] . ">";
+			echo "<input type=hidden name=hidden_number value=" . $record['contact'] . ">";
 			echo "<td class'='data'>" . "<input type=submit name=send value=send>" . "</td>";
 			echo "<td class'='data'>" . "<input type=submit name=delete value=delete>" . "</td>";
 			echo "</form>";
