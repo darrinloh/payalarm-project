@@ -81,10 +81,8 @@ ddsmoothmenu.init({
     <div id="tooplate_main">
          <div class="col two_third" style="width:830px; text-align:center">
 		<h1 style="color:blue; font-family:Georgia; "><u><b>HOME PAGE</b></u>	</h1>	
-		 <p> Welcome to your very own PayAlarm account! We hope you enjoy our services!</p>
-		 <h3><u>Manoeuvring tips</u></h3>
-		 <p> To see your entire database, click the <strong>Account</strong> link in the toolbar above.</p>
-		 <p>To Change your account details(password etc), hover over the Account link and select <strong>change details</strong>.</p>
+		 <p> Welcome to your very own PayAlarm account! We hope you enjoy your experience!</p>
+
 		<?php 
 		 if (isset($_SESSION["temp"]) && $_SESSION["temp"] == 'pass') {
 			echo"<script>alert('Password successfully changed!')</script>";

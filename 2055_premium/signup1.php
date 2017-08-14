@@ -5,6 +5,7 @@
 $uid = $_POST['uid'];
 $pwd = $_POST['pwd'];
 $confirm = $_POST['password'];
+$pay = $_POST['payee'];
 
 $checkUser = "SELECT uid FROM user";
 $checkRes = mysqli_query($conn, $checkUser);
@@ -40,7 +41,7 @@ $page ="";
 		$page="signup.php";
 	}
 	elseif($_SESSION["temp"]=="error0"){
-		$sql = "INSERT INTO user (uid, pwd) VALUES ('$uid','$pwd')";
+		$sql = "INSERT INTO user (uid, pwd, payee) VALUES ('$uid','$pwd','$pay')";
 
 		$result = mysqli_query($conn,$sql);	
 

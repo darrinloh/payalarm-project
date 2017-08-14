@@ -17,6 +17,7 @@ else{
 	$_SESSION['id']=$row['id'];
 	$_SESSION['uid']=$row['uid'];
 	$_SESSION['ref']=0;
+	$_SESSION['payee']=$row['payee'];
 	header("Location:home.php");
 }
 

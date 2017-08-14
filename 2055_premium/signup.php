@@ -69,11 +69,13 @@ ddsmoothmenu.init({
 			<form action="signup1.php" method="POST" style="float:right">
 			<h2><b>Sign Up!</b></h2> 	 	
             <p>Enter your New Username and Password</p>
-				Username:<input type="text" name="uid" placeholder="Username"><p>(Note: Username must contain <b>at least 1 alphabet)</b></p>
+				Username:<input type="text" name="uid" placeholder="Username"><p>(Note: Username must contain <b>at least 1 alphabet</b>)</p>
 				<br><br>
-				Password:<input type="password" name="pwd" placeholder="Password"><br><p>(Note: Password length must be <b>6 or more</b> and <b>cannot contain special characters)</b></p>
+				Password:<input type="password" name="pwd" placeholder="Password"><br><p>(Note: Password length must be <b>6 or more</b> and <b>cannot contain special characters</b>)</p>
 				<br><br>
-				Confirm Password:<input  type="password" name="password" placeholder="Confirm Password">
+				Confirm Password:<input  type="password" name="password" placeholder="Confirm Password"><br>
+				<br><br>
+				Payee's Name:<input type="text" name="payee" placeholder="Payee"><p>(Note:Your customers <b>will see this</b> when you notify them with the automatic sms)</p>
 				<br><br>
 				<input type="submit" value="Sign Up">
 			</form>
