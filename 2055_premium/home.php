@@ -117,6 +117,7 @@ ddsmoothmenu.init({
 						<th class='data'>Email</th>
 						<th class='data'>Contact</th>
 						<th class='data'>Due Date</th>
+						
 						<th class='rem'>Remarks</th>
 					</tr>";
 					include 'notifications.php';
