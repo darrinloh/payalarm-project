@@ -98,7 +98,7 @@ while($row = mysqli_fetch_array($res1)){
 					echo "<input type=hidden name=hidden value=" . $row['name'] . ">";
 				echo "<input type=hidden name=hidden_amount value=" . $row['amount'] . ">";
 				echo "<input type=hidden name=hidden_number value=" . $row['contact'] . ">";
-				echo "<td class'='data'>" . "<input type=submit name=send_overdue value=send>" . "</td>";
+				echo "<td class'='data'>" . "<input type=submit name=send_from_home value=send>" . "</td>";
 				echo "</form>";
 				echo "</tr>";
 			}
