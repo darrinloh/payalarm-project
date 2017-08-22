@@ -16,6 +16,7 @@ echo ".data {word-wrap:break-word; width:108px; }";
 echo ".contact {width:40px}";
 echo "table {table-layout:fixed; width:850px}";
 echo ".rem {word-wrap:break-word; width:140px;}";
+echo ".send_reminder {width:65px;}";
 
 echo "</style>";
 

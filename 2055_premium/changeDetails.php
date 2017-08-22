@@ -126,7 +126,7 @@ ddsmoothmenu.init({
  
         <div class="col center">
         	<h4>Ask us anything!</h4>
-          	<p>Contact us for enquiries at <a href="mailto:info@company.com">info@company.com</a></p>
+          	<p>Contact us for enquiries at  <a href="mailto:samuellohjw@gmail.com">samuellohjw@gmail.com</a></p>
 			<br>
 			<p>	Copyright © 2017 PayAlarm</p>
         </div>

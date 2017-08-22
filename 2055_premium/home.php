@@ -110,15 +110,15 @@ ddsmoothmenu.init({
 				</form>
 				<br>
 				<?php
-				echo "<table border=2 style='table-layout:fixed; width:500px'>
+				echo "<table border=2 style='table-layout:fixed; width:600px'>
 					<tr style='color:blue;background-color:none'>
 						<th class='data' >Name</th>
 						<th class='data'>Amount</th>
 						<th class='data'>Email</th>
 						<th class='data'>Contact</th>
 						<th class='data'>Due Date</th>
-						
 						<th class='rem'>Remarks</th>
+						<th class='send_reminder'>Send </br>Reminder</th>
 					</tr>";
 					include 'notifications.php';
 				echo "</table>";
@@ -155,7 +155,7 @@ ddsmoothmenu.init({
 
 				<br>
 				<?php
-				echo "<table border=2 style='table-layout:fixed; width:500px'>
+				echo "<table border=2 style='table-layout:fixed; width:600px'>
 					<tr style='color:red;background-color:none'>
 						<th class='data' >Name</th>
 						<th class='data'>Amount</th>
@@ -163,6 +163,7 @@ ddsmoothmenu.init({
 						<th class='data'>Contact</th>
 						<th class='data'>Due Date</th>
 						<th class='rem'>Remarks</th>
+						<th class='send_reminder'>Send </br>Reminder</th>
 					</tr>";
 					include 'overdue.php';
 				echo "</table>";
@@ -183,7 +184,7 @@ ddsmoothmenu.init({
  
         <div class="col center">
         	<h4>Ask us anything!</h4>
-          	<p>Contact us for enquiries at <a href="mailto:info@company.com">info@company.com</a></p>
+          	<p>Contact us for enquiries at <a href="mailto:samuellohjw@gmail.com">samuellohjw@gmail.com</a></p>
 			<br>	Copyright © 2017 PayAlarm</p>
         </div>
         

@@ -142,8 +142,8 @@ ddsmoothmenu.init({
             <div class="cleaner h40"></div>
             <h4><strong>Contact Us!</strong></h4>
             
-            <strong>Phone:</strong> 12345678<br />
-            <strong>Email:</strong> <a href="mailto:info@company.com">info@company.com</a> <br />
+            <strong>Phone:</strong> 96776489 or 81122545<br />
+            <strong>Email:</strong>  <a href="mailto:samuellohjw@gmail.com">samuellohjw@gmail.com</a> <br>
             
         </div>
 		 
@@ -158,7 +158,7 @@ ddsmoothmenu.init({
  
         <div class="col center">
         	<h4>Ask us anything!</h4>
-          	<p>Contact us for enquiries at <a href="mailto:info@company.com">info@company.com</a></p>
+          	<p>Contact us for enquiries at <a href="mailto:samuelloh@gmail.com">samuellohjw@gmail.com</a></p>
 			<br>
 			<p>Copyright © 2017 PayAlarm</p>
         </div>
