@@ -1,6 +1,6 @@
 <?php
 	session_start();
-
+	$today = date_create();
 	$con = mysqli_connect("localhost","root","","payalarmlogin");
 	$sql = "SELECT id, uid FROM user";
 	$result = mysqli_query($con, $sql);	
@@ -184,44 +184,87 @@
 	
 	
 	elseif(isset($_POST['send'])){
-	    
+	    $d=$_POST["hidden_day"];
+		$m=$_POST["hidden_mon"];
+		$y=$_POST["hidden_year"];
+			
+		
+		
+		$due=date_create_from_format("d-m-Y","$d-$m-$y");
+		$dif = date_diff($today,$due);
+		$diff = $dif->format("%r%a");   // signed integer difference between todays date and due date
 		$from = "PayAlarm";
 		$baseurl ="https://mx.fortdigital.net";
 		$name = $_POST['hidden'];
 		$payee=$_SESSION["payee"];
 		$amount = $_POST['hidden_amount'];
 		$to = $_POST['hidden_number'];
-		
-		// auth call
-		$url = "$baseurl/http/send-message?username=test&password=test&to=$to&from=PayAlarm&message=Hi+$name!+Your+payment+of+SGD$amount+to+$payee+is+due+soon.";
+		if($diff>=0){
+			// auth call
+			$url = "$baseurl/http/send-message?username=test&password=test&to=$to&from=PayAlarm&message=Hi+$name!+Your+payment+of+SGD$amount+to+$payee+is+due+soon.";
  
-		// do auth call
-		$ret = file($url);
- 
-		// explode our response. return string is on first line of the data returned
-		$sess = explode(":",$ret[0]);
-		
-		//echo $sess[0];
-		if($sess[0] == "OK"){
- 
-			$sess_id = trim($sess[1]); // remove any whitespace
-			$url = "$baseurl/http/send-message?session_id=$sess_id&to=$to&message=$message";
- 
-			// do sendmsg call
+			// do auth call
 			$ret = file($url);
-			$send = explode(":",$ret[0]);
  
-			if ($send[0] == "ID") {
-				echo "successnmessage ID: ". $send[1];
-			}
+			// explode our response. return string is on first line of the data returned
+			$sess = explode(":",$ret[0]);
+		
+			//echo $sess[0];
+			if($sess[0] == "OK"){
+ 
+				$sess_id = trim($sess[1]); // remove any whitespace
+				$url = "$baseurl/http/send-message?session_id=$sess_id&to=$to&message=$message";
+ 
+				// do sendmsg call
+				$ret = file($url);
+				$send = explode(":",$ret[0]);
+ 
+				if ($send[0] == "ID") {
+					echo "successnmessage ID: ". $send[1];
+				}
+				else{
+					echo "send message failed";
+				}
+			}		
 			else {
-				echo "send message failed";
+				echo "Authentication failure: ". $ret[0];
 			}
+			$page="account.php";
 		}
-		else {
-			echo "Authentication failure: ". $ret[0];
+		else{
+			// auth call
+			$url = "$baseurl/http/send-message?username=test&password=test&to=$to&from=PayAlarm&message=Hi+$name!+Your+payment+of+SGD$amount+to+$payee+is+overdue.";
+ 
+			// do auth call
+			$ret = file($url);
+ 
+			// explode our response. return string is on first line of the data returned
+			$sess = explode(":",$ret[0]);
+		
+			//echo $sess[0];
+			if($sess[0] == "OK"){
+ 
+				$sess_id = trim($sess[1]); // remove any whitespace
+				$url = "$baseurl/http/send-message?session_id=$sess_id&to=$to&message=$message";
+ 
+				// do sendmsg call
+				$ret = file($url);
+				$send = explode(":",$ret[0]);
+ 
+				if ($send[0] == "ID") {
+					echo "successnmessage ID: ". $send[1];
+				}
+				else{
+					echo "send message failed";
+				}
+			}		
+			else {
+				echo "Authentication failure: ". $ret[0];
+			}
+			$page="account.php";
+			
+			
 		}
-		$page="account.php";
 	}
 	
 	elseif(isset($_POST['send_from_home'])){

@@ -136,7 +136,7 @@ ddsmoothmenu.init({
 			<div class="col no_margin_right" id="Table" style="width:830px">
 		<?php
 			include 'dbh.php';
-			
+		
 
 		if (isset($_GET["msg"])){
 			if ($_GET['msg'] == 'name'){	
@@ -207,6 +207,9 @@ ddsmoothmenu.init({
 			echo "<input type=hidden name=hidden value=" . $record['name'] . ">";
 			echo "<input type=hidden name=hidden_amount value=" . $record['amount'] . ">";
 			echo "<input type=hidden name=hidden_number value=" . $record['contact'] . ">";
+			echo "<input type=hidden name=hidden_day value=" . $record['day'] . ">";
+			echo "<input type=hidden name=hidden_mon value=" . $record['mon'] . ">";
+			echo "<input type=hidden name=hidden_year value=" . $record['year'] . ">";
 			echo "<td class'='data'>" . "<input type=submit name=send value=send>" . "</td>";
 			echo "<td class'='data'>" . "<input type=submit name=delete value=delete>" . "</td>";
 			echo "</form>";
