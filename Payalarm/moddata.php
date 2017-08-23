@@ -90,7 +90,7 @@
 	
 	elseif(isset($_POST['delete'])){
 		$name1= $_POST['hidden'];
-		
+		echo "$name1";
 		$DeleteQuery = "DELETE FROM $nameOfUser WHERE name='$name1'";
 		
 		$result2=mysqli_query($con1, $DeleteQuery);
@@ -196,6 +196,7 @@
 		$from = "PayAlarm";
 		$baseurl ="https://mx.fortdigital.net";
 		$name = $_POST['hidden'];
+		$name = str_replace(" ","+",$name);
 		$payee=$_SESSION["payee"];
 		$amount = $_POST['hidden_amount'];
 		$to = $_POST['hidden_number'];
@@ -272,6 +273,7 @@
 		$from = "PayAlarm";
 		$baseurl ="https://mx.fortdigital.net";
 		$name = $_POST['hidden'];
+		$name = str_replace(" ","+",$name);
 		$payee=$_SESSION["payee"];
 		$amount = $_POST['hidden_amount'];
 		$to = $_POST['hidden_number'];
@@ -314,6 +316,7 @@
 		$from = "PayAlarm";
 		$baseurl ="https://mx.fortdigital.net";
 		$name = $_POST['hidden'];
+		$name = str_replace(" ","+",$name);
 		$payee=$_SESSION["payee"];
 		$amount = $_POST['hidden_amount'];
 		$to = $_POST['hidden_number'];
