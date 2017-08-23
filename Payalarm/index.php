@@ -111,8 +111,8 @@ ddsmoothmenu.init({
 		<div class="col center" style="width:540px">
 		<p><strong>PayAlarm</strong> is a web app of a simple payment tracking system to be used by a payee. In other words,it helps one to keep track of due payments from debtors!
 		Some features include...<br>
-		<strong>-automatic SMS system sent to the payer for regular reminders</strong><br>
-		<strong>-an easy-to-use system to store payer's details</strong><br>
+		<strong>-automatic SMS function to send reminders to the payor</strong><br>
+		<strong>-an easy-to-use system to store payor's details</strong><br>
 		Sign up now to get started!(Link above)</p>
 		<br><br>
 		<p>Click here for our <a href="faq.html" target="_blank"><strong>FAQ</strong></a>!</p>
